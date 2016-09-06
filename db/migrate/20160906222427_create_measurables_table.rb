@@ -1,6 +1,6 @@
-class CreateStatisticsTable < ActiveRecord::Migration
+class CreateMeasurablesTable < ActiveRecord::Migration
   def change
-    create_table :statistics do |t|
+    create_table :measurables do |t|
       t.integer :player_id
       t.integer :season_id
       t.integer :season
