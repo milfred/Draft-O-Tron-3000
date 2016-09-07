@@ -1,7 +1,159 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'net/http'
+
+# player information api call
+def player_data
+  uri = URI('https://api.fantasydata.net/nfl/v2/json/Players')
+  uri.query = URI.encode_www_form({
+  })
+
+  request = Net::HTTP::Get.new(uri.request_uri)
+  # Request headers
+  request['Ocp-Apim-Subscription-Key'] = Rails.application.secrets.fantasy_data_api_key
+  # Request body
+  request.body = "{body}"
+
+  response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+    http.request(request)
+  end
+
+  JSON.parse(response.body)
+end
+
+# get stats data
+def measurables_data(year)
+  uri = URI("https://api.fantasydata.net/nfl/v2/json/PlayerSeasonStats/#{year}REG")
+  uri.query = URI.encode_www_form({
+  })
+
+  request = Net::HTTP::Get.new(uri.request_uri)
+  # Request headers
+  request['Ocp-Apim-Subscription-Key'] = Rails.application.secrets.fantasy_data_api_key
+  # Request body
+  request.body = "{body}"
+
+  response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+      http.request(request)
+  end
+
+  JSON.parse(response.body)
+end
+
+# get adp_data
+def adp_data
+  uri = URI('https://api.fantasydata.net/nfl/v2/json/FantasyPlayers')
+  uri.query = URI.encode_www_form({
+  })
+
+  request = Net::HTTP::Get.new(uri.request_uri)
+  # Request headers
+  request['Ocp-Apim-Subscription-Key'] = Rails.application.secrets.fantasy_data_api_key
+  # Request body
+  request.body = "{body}"
+
+  response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+      http.request(request)
+  end
+
+  JSON.parse(response.body)
+end
+
+def projections(year)
+  uri = URI("https://api.fantasydata.net/v3/nfl/projections/json/PlayerSeasonProjectionStats/#{year}")
+uri.query = URI.encode_www_form({
+})
+
+request = Net::HTTP::Get.new(uri.request_uri)
+# Request headers
+request['Ocp-Apim-Subscription-Key'] = Rails.application.secrets.fantasy_data_api_key
+# Request body
+request.body = "{body}"
+
+response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+    http.request(request)
+end
+
+JSON.parse(response.body)
+
+end
+
+
+seasons = (2011..2016).to_a.reverse
+seasons.each {|season| Season.create!(season: season)}
+
+player_data.each do |player|
+  pos = player["Position"]
+  pos = "RB" if pos == "FB"
+
+  if pos == "QB" || pos == "RB" || pos == "WR" || pos == "TE"
+    Player.create!(
+      id: player["PlayerID"],
+      name: player["Name"],
+      team: player["Team"],
+      position: pos,
+      experience: player["Experience"],
+      active: player["Active"],
+      photo_url: player["PhotoUrl"],
+      bye_week: player["ByeWeek"],
+      depth_order: player["DepthOrder"],
+      draft_round: player["CollegeDraftRound"],
+      draft_pick: player["CollegeDraftPick"],
+      rotowire_url: "http://www.rotowire.com/football/player.htm?id=#{player['RotoWirePlayerID']}",
+      rotoworld_url: "http://www.rotoworld.com/player/nfl/#{'RotoworldPlayerID'}",
+      adp: 2000,
+      adp_ppr: 2000)
+  end
+end
+
+
+measurables_data.each do |measurable|
+  pos = measurable["Position"]
+  if pos == "QB" || pos == "RB" || pos == "WR" || pos == "TE"
+    Measurable.create!(
+      player_id: measurable["PlayerID"],
+      games_played: measurable["Played"],
+      games_started: measurable["Started"],
+      pass_yards: measurable["PassingYards"],
+      pass_tds: measurable["PassingTouchdowns"],
+      interceptions: measurable["PassingInterceptions"],
+      pass_2pt_conv: measurable["TwoPointConversionPasses"],
+      rush_yards: measurable["RushingYards"],
+      rush_tds: measurable["RushingTouchdowns"],
+      rush_2pt_conv: measurable["TwoPointConversionRuns"],
+      receptions: measurable["Receptions"],
+      receive_yards: measurable["ReceivingYards"],
+      receive_tds: measurable["ReceivingTouchdowns"],
+      receive_2pt_conv: measurable["TwoPointConversionReceptions"],
+      fumbles: measurable["Fumbles"],
+      fumbles_lost: measurable["FumblesLost"])
+  end
+end
+
+projections.each do |measurable|
+  pos = measurable["Position"]
+  if pos == "QB" || pos == "RB" || pos == "WR" || pos == "TE"
+    Measurable.create!(
+      player_id: measurable["PlayerID"],
+      games_played: measurable["Played"],
+      games_started: measurable["Started"],
+      pass_yards: measurable["PassingYards"],
+      pass_tds: measurable["PassingTouchdowns"],
+      interceptions: measurable["PassingInterceptions"],
+      pass_2pt_conv: measurable["TwoPointConversionPasses"],
+      rush_yards: measurable["RushingYards"],
+      rush_tds: measurable["RushingTouchdowns"],
+      rush_2pt_conv: measurable["TwoPointConversionRuns"],
+      receptions: measurable["Receptions"],
+      receive_yards: measurable["ReceivingYards"],
+      receive_tds: measurable["ReceivingTouchdowns"],
+      receive_2pt_conv: measurable["TwoPointConversionReceptions"],
+      fumbles: measurable["Fumbles"],
+      fumbles_lost: measurable["FumblesLost"])
+  end
+end
+
+adp_data.each do |player|
+  if player_to_update = Player.find_by(id: player["PlayerID"])
+    player_to_update.update(adp: player["AverageDraftPosition"])
+    player_to_update.update(adp_ppr: player["AverageDraftPositionPPR"])
+  end
+end
