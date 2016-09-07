@@ -57,8 +57,8 @@ def adp_data
   JSON.parse(response.body)
 end
 
-def projections(year)
-  uri = URI("https://api.fantasydata.net/v3/nfl/projections/json/PlayerSeasonProjectionStats/#{year}")
+def projections
+  uri = URI("https://api.fantasydata.net/v3/nfl/projections/json/PlayerSeasonProjectionStats/2016")
 uri.query = URI.encode_www_form({
 })
 
@@ -86,7 +86,7 @@ player_data.each do |player|
 
   if pos == "QB" || pos == "RB" || pos == "WR" || pos == "TE"
     Player.create!(
-      id: player["PlayerID"],
+      api_player_id: player["PlayerID"],
       name: player["Name"],
       team: player["Team"],
       position: pos,
@@ -98,41 +98,48 @@ player_data.each do |player|
       draft_round: player["CollegeDraftRound"],
       draft_pick: player["CollegeDraftPick"],
       rotowire_url: "http://www.rotowire.com/football/player.htm?id=#{player['RotoWirePlayerID']}",
-      rotoworld_url: "http://www.rotoworld.com/player/nfl/#{'RotoworldPlayerID'}",
       adp: 2000,
       adp_ppr: 2000)
   end
 end
 
 
-measurables_data.each do |measurable|
-  pos = measurable["Position"]
-  if pos == "QB" || pos == "RB" || pos == "WR" || pos == "TE"
-    Measurable.create!(
-      player_id: measurable["PlayerID"],
-      games_played: measurable["Played"],
-      games_started: measurable["Started"],
-      pass_yards: measurable["PassingYards"],
-      pass_tds: measurable["PassingTouchdowns"],
-      interceptions: measurable["PassingInterceptions"],
-      pass_2pt_conv: measurable["TwoPointConversionPasses"],
-      rush_yards: measurable["RushingYards"],
-      rush_tds: measurable["RushingTouchdowns"],
-      rush_2pt_conv: measurable["TwoPointConversionRuns"],
-      receptions: measurable["Receptions"],
-      receive_yards: measurable["ReceivingYards"],
-      receive_tds: measurable["ReceivingTouchdowns"],
-      receive_2pt_conv: measurable["TwoPointConversionReceptions"],
-      fumbles: measurable["Fumbles"],
-      fumbles_lost: measurable["FumblesLost"])
+year = 2015
+season_id = 2
+5.times do
+  measurables_data(year).each do |measurable|
+    pos = measurable["Position"]
+    if (pos == "QB" || pos == "RB" || pos == "WR" || pos == "TE") && Player.find_by(api_player_id: measurable["PlayerID"])
+      Measurable.create!(
+        player_id: Player.find_by(api_player_id: measurable["PlayerID"]).id,
+        season_id: season_id,
+        games_played: measurable["Played"],
+        games_started: measurable["Started"],
+        pass_yards: measurable["PassingYards"],
+        pass_tds: measurable["PassingTouchdowns"],
+        interceptions: measurable["PassingInterceptions"],
+        pass_2pt_conv: measurable["TwoPointConversionPasses"],
+        rush_yards: measurable["RushingYards"],
+        rush_tds: measurable["RushingTouchdowns"],
+        rush_2pt_conv: measurable["TwoPointConversionRuns"],
+        receptions: measurable["Receptions"],
+        receive_yards: measurable["ReceivingYards"],
+        receive_tds: measurable["ReceivingTouchdowns"],
+        receive_2pt_conv: measurable["TwoPointConversionReceptions"],
+        fumbles: measurable["Fumbles"],
+        fumbles_lost: measurable["FumblesLost"])
+    end
   end
+  year -= 1
+  season_id += 1
 end
 
 projections.each do |measurable|
   pos = measurable["Position"]
-  if pos == "QB" || pos == "RB" || pos == "WR" || pos == "TE"
+  if (pos == "QB" || pos == "RB" || pos == "WR" || pos == "TE") && Player.find_by(api_player_id: measurable["PlayerID"])
     Measurable.create!(
-      player_id: measurable["PlayerID"],
+      player_id: Player.find_by(api_player_id: measurable["PlayerID"]).id,
+      season_id: 1,
       games_played: measurable["Played"],
       games_started: measurable["Started"],
       pass_yards: measurable["PassingYards"],
@@ -152,7 +159,7 @@ projections.each do |measurable|
 end
 
 adp_data.each do |player|
-  if player_to_update = Player.find_by(id: player["PlayerID"])
+  if player_to_update = Player.find_by(api_player_id: player["PlayerID"])
     player_to_update.update(adp: player["AverageDraftPosition"])
     player_to_update.update(adp_ppr: player["AverageDraftPositionPPR"])
   end
