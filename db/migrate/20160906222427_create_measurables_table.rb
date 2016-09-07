@@ -3,7 +3,6 @@ class CreateMeasurablesTable < ActiveRecord::Migration
     create_table :measurables do |t|
       t.integer :player_id
       t.integer :season_id
-      t.integer :season
       t.integer :games_played
       t.integer :games_started
       t.integer :pass_yards

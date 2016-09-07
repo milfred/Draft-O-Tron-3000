@@ -1,5 +1,7 @@
 class CreateSeasonsTable < ActiveRecord::Migration
   def change
-    t.integer :season
+    create_table :seasons do |t|
+      t.integer :season
+    end
   end
 end
