@@ -1,6 +1,7 @@
 class CreatePlayersTable < ActiveRecord::Migration
   def change
     create_table :players do |t|
+      t.integer :api_player_id
       t.string :name
       t.string :team
       t.string :position
