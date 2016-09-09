@@ -13,12 +13,14 @@
     <h1><span class="light-weight">DRAFT-O-TRON</span> 3000</h1>
     <div class="menu-button right">
       <span class="inline-block">settings</span>
-      <img class="inline-block" src="assets/left-arrow-white.png" alt="Menu Bars" />
+      <%= image_tag("left-arrow-white.png", class: "inline-block", alt: "Menu Bars") %>
     </div>
   </header>
 
 <%= yield %>
-  <a href="#" class="scroll-to-top"><img src="assets/up-arrow-white.png" alt="Scroll to Top Button" /></a>
+  <a href="#" class="scroll-to-top">
+    <%= image_tag("up-arrow-white.png", class: "scroll-to_top", alt: "Scroll to Top Button") %>
+  </a>
 
 </body>
 </html>
