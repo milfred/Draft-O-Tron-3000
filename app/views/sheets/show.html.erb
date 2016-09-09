@@ -1,3 +1,41 @@
-<% @players.each do |player| %>
-  <h3><%= player.name %></h3>
-<% end %>
+<aside id="scoring-data">
+  <%= image_tag("right-arrow-white.png", class: "close-arrow block", alt: "Right Arrow Icon") %>
+  <div class="scoring">
+    <h3 class="light-weight">Scoring</h3>
+    <%= form_for @sheet, url: {action: "update"}, html: {class: "update-pt-values"} do |f| %>
+      <div class="form-field block">
+        <%= f.label :pass_yard_pts %>
+        <%= f.text_field :pass_yard_pts %>
+      </div>
+      <div class="form-field block">
+        <%= f.label :pass_td_pts %>
+        <%= f.text_field :pass_td_pts %>
+      </div>
+      <div class="form-field block">
+        <%= f.label :int_pts %>
+        <%= f.text_field :int_pts %>
+      </div>
+      <div class="form-field block">
+        <%= f.label :rush_yard_pts %>
+        <%= f.text_field :rush_yard_pts %>
+      </div>
+      <div class="form-field block">
+        <%= f.label :rush_td_pts %>
+        <%= f.text_field :rush_td_pts %>
+      </div>
+      <div class="form-field block">
+        <%= f.label :rec_pts %>
+        <%= f.text_field :rec_pts %>
+      </div>
+      <div class="form-field block">
+        <%= f.label :rec_yard_pts %>
+        <%= f.text_field :rec_yard_pts %>
+      </div>
+      <div class="form-field block">
+        <%= f.label :rec_td_pts %>
+        <%= f.text_field :rec_td_pts %>
+      </div>
+        <%= f.submit %>
+    <% end %>
+  </div>
+</aside>
