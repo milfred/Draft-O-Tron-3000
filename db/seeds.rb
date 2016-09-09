@@ -158,9 +158,34 @@ projections.each do |measurable|
   end
 end
 
+Player.all.each do |player|
+  if player.seasons.where(id: 1).empty?
+    Measurable.create!(
+      player_id: player.id,
+      season_id: 1,
+      games_played: 0,
+      games_started: 0,
+      pass_yards: 0,
+      pass_tds: 0,
+      interceptions: 0,
+      pass_2pt_conv: 0,
+      rush_yards: 0,
+      rush_tds: 0,
+      rush_2pt_conv: 0,
+      receptions: 0,
+      receive_yards: 0,
+      receive_tds: 0,
+      receive_2pt_conv: 0,
+      fumbles: 0,
+      fumbles_lost: 0)
+  end
+end
+
 adp_data.each do |player|
   if player_to_update = Player.find_by(api_player_id: player["PlayerID"])
     player_to_update.update(adp: player["AverageDraftPosition"])
     player_to_update.update(adp_ppr: player["AverageDraftPositionPPR"])
   end
 end
+
+Sheet.create!
