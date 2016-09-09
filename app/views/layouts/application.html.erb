@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>DRAFT-O-TRON 3000</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|Slabo+27px" rel="stylesheet">
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <head>
+    <title>DRAFT-O-TRON 3000</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|Slabo+27px" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
 
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <header class="clearfix">
-    <h1><span class="light-weight">DRAFT-O-TRON</span> 3000</h1>
-    <div class="menu-button right">
-      <span class="inline-block">settings</span>
-      <%= image_tag("left-arrow-white.png", class: "inline-block", alt: "Menu Bars") %>
-    </div>
-  </header>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header class="clearfix">
+      <h1><span class="light-weight">DRAFT-O-TRON</span> 3000</h1>
+      <div class="menu-button right">
+        <span class="inline-block">settings</span>
+        <%= image_tag("left-arrow-white.png", class: "inline-block", alt: "Menu Bars") %>
+      </div>
+    </header>
 
-<%= yield %>
-  <a href="#" class="scroll-to-top">
-    <%= image_tag("up-arrow-white.png", class: "scroll-to_top", alt: "Scroll to Top Button") %>
-  </a>
+  <%= yield %>
 
-</body>
+    <a href="#" class="scroll-to-top">
+      <%= image_tag("up-arrow-white.png", class: "scroll-to_top", alt: "Scroll to Top Button") %>
+    </a>
+  </body>
 </html>
