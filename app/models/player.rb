@@ -10,4 +10,8 @@ class Player < ActiveRecord::Base
     self.player_stats.where(season_id: season_id)[0]
   end
 
+  def player_rank(sheet)
+    self.rankings.find_by(sheet_id: sheet.id).player_rank
+  end
+
 end
