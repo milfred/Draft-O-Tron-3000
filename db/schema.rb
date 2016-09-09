@@ -73,6 +73,10 @@ ActiveRecord::Schema.define(version: 20160906222439) do
     t.float  "rec_pts"
     t.float  "rec_yard_pts"
     t.float  "rec_td_pts"
+    t.float  "avg_qb_proj"
+    t.float  "avg_rb_proj"
+    t.float  "avg_wr_proj"
+    t.float  "avg_te_proj"
   end
 
 end
