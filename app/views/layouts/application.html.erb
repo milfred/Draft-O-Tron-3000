@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DraftOTron</title>
+  <title>DRAFT-O-TRON 3000</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|Slabo+27px" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header class="clearfix">
+    <h1><span class="light-weight">DRAFT-O-TRON</span> 3000</h1>
+    <div class="menu-button right">
+      <span class="inline-block">settings</span>
+      <img class="inline-block" src="assets/left-arrow-white.png" alt="Menu Bars" />
+    </div>
+  </header>
 
 <%= yield %>
+  <a href="#" class="scroll-to-top"><img src="assets/up-arrow-white.png" alt="Scroll to Top Button" /></a>
 
 </body>
 </html>
