@@ -1,0 +1,61 @@
+<div class="stats-container shadow">
+  <div class="stats-header">
+    <img class="player-pic" src="<%= @player.photo_url %>" alt="<%= @player.name %>" />
+    <h3><%= @player.name %></h3>
+    <a class="rotowire" href="<%= @player.rotowire_url %>" target="_blank">Rotowire Player Page</a>
+  </div>
+  <table class="stats">
+  	<thead>
+      <tr>
+        <th>Season</th>
+        <th>Played</th>
+        <th>Started</th>
+        <th>PsYrds</th>
+        <th>PsTDs</th>
+        <th>Ints</th>
+        <th>Ps2pt</th>
+        <th>RuYrds</th>
+        <th>RuTDs</th>
+        <th>Ru2pt</th>
+        <th>Recs</th>
+        <th>RecYrds</th>
+        <th>RecTDs</th>
+        <th>Rec2pt</th>
+        <th>Fums</th>
+        <th>FumsLst</th>
+      </tr>
+    </thead>
+    <tbody class="light-weight">
+      <% @stats.each do |season| %>
+        <% if season.season == 2016 %>
+          <tr class="projections">
+            <td>Projections</td>
+        <% else %>
+          <tr>
+            <td><%= season.season %></td>
+        <% end %>
+          <% if season.season == 2016 %>
+            <td>&mdash;</td>
+            <td>&mdash;</td>
+          <% else %>
+            <td><%= season.games_played %></td>
+            <td><%= season.games_started %></td>
+          <% end %>
+          <td><%= season.pass_yards %></td>
+          <td><%= season.pass_tds %></td>
+          <td><%= season.interceptions %></td>
+          <td><%= season.pass_2pt_conv %></td>
+          <td><%= season.rush_yards %></td>
+          <td><%= season.rush_tds %></td>
+          <td><%= season.rush_2pt_conv %></td>
+          <td><%= season.receptions %></td>
+          <td><%= season.receive_yards %></td>
+          <td><%= season.receive_tds %></td>
+          <td><%= season.receive_2pt_conv %></td>
+          <td><%= season.fumbles %></td>
+          <td><%= season.fumbles_lost %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
