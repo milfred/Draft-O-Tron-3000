@@ -15,7 +15,8 @@ class Player < ActiveRecord::Base
   end
 
   def total_points(sheet, year)
-    (self.stats_for(year)[:pass_yards] * sheet.pass_yard_pts) + (self.stats_for(year)[:pass_tds] * sheet.pass_td_pts) + (self.stats_for(year)[:rush_yards] * sheet.rush_yard_pts) + (self.stats_for(year)[:interceptions] * sheet.int_pts) + (self.stats_for(year)[:rush_tds] * sheet.rush_td_pts) + (self.stats_for(year)[:receptions] * sheet.rec_pts) + (self.stats_for(year)[:receive_yards] * sheet.rec_yard_pts) + (self.stats_for(year)[:receive_tds] * sheet.rec_td_pts)
+    stats = self.stats_for(year)
+    (stats[:pass_yards] * sheet.pass_yard_pts) + (stats[:pass_tds] * sheet.pass_td_pts) + (stats[:rush_yards] * sheet.rush_yard_pts) + (stats[:interceptions] * sheet.int_pts) + (stats[:rush_tds] * sheet.rush_td_pts) + (stats[:receptions] * sheet.rec_pts) + (stats[:receive_yards] * sheet.rec_yard_pts) + (stats[:receive_tds] * sheet.rec_td_pts)
   end
 
   def adj_proj(sheet, year)
