@@ -8,7 +8,7 @@ class SheetsController < ApplicationController
 
   def update
     if request.xhr
-
+      
     else
 
     end

@@ -63,7 +63,7 @@
 
       <% if player.team %>
         <tr class="ui-state-default">
-          <td class="rank"><%= player.player_rank(@sheet) %></td>
+          <td class="rank"><%= index + 1 %></td>
           <td class="normal-weight player-name">
             <a id="<%= player.id %>" class="player-stats" href=""><%= player.name %></a>
           </td>
