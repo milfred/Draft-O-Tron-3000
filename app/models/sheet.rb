@@ -52,7 +52,7 @@ class Sheet < ActiveRecord::Base
     self.rankings.sort do |a,b|
       player_a = Player.find(a.player_id)
       player_b = Player.find(b.player_id)
-      [player_a.adp_ppr, player_b.adj_proj(self, 2016)] <=> [player_b.adp_ppr, player_a.adj_proj(self, 2016)]
+      player_a.adp_ppr <=> player_b.adp_ppr
     end
   end
 
