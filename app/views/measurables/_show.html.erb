@@ -27,14 +27,14 @@
     </thead>
     <tbody class="light-weight">
       <% @stats.each do |season| %>
-        <% if season.season == 2016 %>
+        <% if season.season.season == 2016 %>
           <tr class="projections">
             <td>Projections</td>
         <% else %>
           <tr>
-            <td><%= season.season %></td>
+            <td><%= season.season.season %></td>
         <% end %>
-          <% if season.season == 2016 %>
+          <% if season.season.season == 2016 %>
             <td>&mdash;</td>
             <td>&mdash;</td>
           <% else %>

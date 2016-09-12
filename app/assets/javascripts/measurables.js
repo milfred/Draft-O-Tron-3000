@@ -12,13 +12,16 @@ $(function() {
     var $player = $(this);
     var playerId = $(this).attr("id");
 
+    console.log(playerId);
+
     var request = $.ajax({
-      url: "measurables/show",
+      url: "/measurables/show",
       method: "GET",
       data: "player_id=" + playerId
     });
 
     request.done(function(response) {
+      console.log(response);
       $player.after(response);
     });
   });
