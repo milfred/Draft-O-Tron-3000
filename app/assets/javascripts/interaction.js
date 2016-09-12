@@ -9,22 +9,22 @@ $(function() {
     $selectStatus.closest("tr").removeClass("targeted-player drafted-player unavailable-player");
     if ($selectStatus.val() === "targeted") {
       $selectStatus.closest("tr").addClass("targeted-player");
-      $selectStatus.css("background-image", "url('assets/down-arrow-gray.png')");
-      $playerName.css("background-image", "url('assets/move-white.png')");
+      $selectStatus.css("background-image", "url('/assets/down-arrow-gray.png')");
+      $playerName.css("background-image", "url('/assets/move-white.png')");
     } else if ($selectStatus.val() === "drafted") {
       $selectStatus.closest("tr").addClass("drafted-player");
-      $selectStatus.css("background-image", "url('assets/down-arrow-white.png')");
-      $playerName.css("background-image", "url('assets/move-white.png')");
+      $selectStatus.css("background-image", "url('/assets/down-arrow-white.png')");
+      $playerName.css("background-image", "url('/assets/move-white.png')");
       $(".drafted-players #drafted-players-list").append("<li>" + $playerName.find("a").text() + "</li>");
       $(".drafted-players").fadeIn(1000);
       $(".drafted-players").delay(3000).fadeOut(1000);
     } else if ($selectStatus.val() === "unavailable") {
       $selectStatus.closest("tr").addClass("unavailable-player");
-      $selectStatus.css("background-image", "url('assets/down-arrow-gray.png')");
-      $playerName.css("background-image", "url('assets/move-white.png')");
+      $selectStatus.css("background-image", "url('/assets/down-arrow-gray.png')");
+      $playerName.css("background-image", "url('/assets/move-white.png')");
     } else {
-      $selectStatus.css("background-image", "url('assets/down-arrow.png')");
-      $playerName.css("background-image", "url('assets/move-dark.png')");
+      $selectStatus.css("background-image", "url('/assets/down-arrow.png')");
+      $playerName.css("background-image", "url('/assets/move-dark.png')");
     }
   });
 
@@ -68,7 +68,7 @@ $(function() {
   });
 
   $(".close-arrow").on("click", function() {
-    $("#scoring-data").css("right", "-200px");
+    $("#scoring-data").css("right", "-250px");
     $(".menu-button").css("opacity", "1");
   });
 
