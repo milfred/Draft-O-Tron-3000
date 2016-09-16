@@ -18,6 +18,8 @@ class CreateMeasurablesTable < ActiveRecord::Migration
       t.integer :receive_2pt_conv
       t.integer :fumbles
       t.integer :fumbles_lost
+
+      t.timestamps null: false
     end
   end
 end
