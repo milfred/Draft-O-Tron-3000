@@ -13,7 +13,7 @@ $(function() {
         method: method,
         data: data
       });
-      
+
       $("#scoring-data").css("right", "-250px");
       $(".menu-button").css("opacity", "1");
       location.reload(true);

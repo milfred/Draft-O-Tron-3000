@@ -64,20 +64,13 @@ $(function() {
     });
   }
 
-  openSettings();
-  closeSettings();
-
-  function openSettings() {
     $(".menu-button").on("click", function() {
       $("#scoring-data").css("right", "0");
       $(".menu-button").css("opacity", "0");
     });
-  }
-  function closeSettings() {
     $(".close-arrow").on("click", function() {
       $("#scoring-data").css("right", "-250px");
       $(".menu-button").css("opacity", "1");
     });
-  }
 
 });
