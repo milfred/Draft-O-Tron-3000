@@ -1,2 +1,9 @@
 /config/secrets.yml
 log
+*.rbc
+capybara-*.html
+.rspec
+/tmp
+/public/system
+/coverage/
+/spec/tmp
