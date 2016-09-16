@@ -31,7 +31,7 @@ $(function() {
   var $table = $('table.players');
   $table.floatThead();
 
-  //Check to see if the window is top if not then display button
+  // Check to see if the window is top if not then display button
 	$(window).scroll(function(){
 
 		if ($(this).scrollTop() > 100) {
@@ -48,7 +48,9 @@ $(function() {
 	});
 
   $("#sortable").sortable({
+    containment: "parent",
     placeholder: "ui-sortable-placeholder",
+    tolerance: 'pointer',
     update: function() {
       updateRank();
     },
@@ -62,14 +64,20 @@ $(function() {
     });
   }
 
-  $(".menu-button").on("click", function() {
-    $("#scoring-data").css("right", "0");
-    $(".menu-button").css("opacity", "0");
-  });
+  openSettings();
+  closeSettings();
 
-  $(".close-arrow").on("click", function() {
-    $("#scoring-data").css("right", "-250px");
-    $(".menu-button").css("opacity", "1");
-  });
+  function openSettings() {
+    $(".menu-button").on("click", function() {
+      $("#scoring-data").css("right", "0");
+      $(".menu-button").css("opacity", "0");
+    });
+  }
+  function closeSettings() {
+    $(".close-arrow").on("click", function() {
+      $("#scoring-data").css("right", "-250px");
+      $(".menu-button").css("opacity", "1");
+    });
+  }
 
 });

@@ -4,6 +4,8 @@ class CreateRankingsTable < ActiveRecord::Migration
       t.integer :sheet_id
       t.integer :player_id
       t.integer :player_rank
+
+      t.timestamps null: false
     end
   end
 end
