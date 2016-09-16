@@ -13,6 +13,14 @@ class SheetsController < ApplicationController
     render nothing: true
   end
 
+  def create
+    @sheet = Sheet.new
+    if @sheet
+      @sheet.save
+      redirect_to "/sheets/#{@sheet.url_parameter}"
+    end
+  end
+
   private
 
   def sheet_params
