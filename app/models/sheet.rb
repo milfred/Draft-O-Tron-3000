@@ -3,14 +3,17 @@ class Sheet < ActiveRecord::Base
   has_many :ranked_players, through: :rankings, source: :player
 
   after_initialize :init
-  after_save :create_rankings, :update_avg_projs!, :set_ranks!
+  after_create :create_rankings, :create_slug!
+  after_save :update_avg_projs!, :set_ranks!
+
+  extend FriendlyId
+  friendly_id :url_parameter, use: :finders
 
   def avg_proj(player_position, year)
     players = self.ranked_players.where(position: player_position).where(depth_order: 1)
     total = 0
     players.each do |player|
-      player_ranking = self.rankings.where(player_id: player.id)[0]
-      total = total + player_ranking.total_points(year)
+      total = total + player.total_points(self, year)
     end
     (total / players.length)
   end
@@ -60,6 +63,10 @@ class Sheet < ActiveRecord::Base
     ordered_rankings.each_with_index do |rank, index|
       rank.update_column(:player_rank, index + 1)
     end
+  end
+
+  def create_slug!
+    self.update_column(:slug, self.url_parameter)
   end
 
 end

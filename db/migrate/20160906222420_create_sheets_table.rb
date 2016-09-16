@@ -14,6 +14,10 @@ class CreateSheetsTable < ActiveRecord::Migration
       t.float :avg_rb_proj
       t.float :avg_wr_proj
       t.float :avg_te_proj
+      t.string :slug
+
+      t.timestamps null: false
     end
+    add_index :sheets, :slug, unique: true
   end
 end

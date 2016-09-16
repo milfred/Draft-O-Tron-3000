@@ -15,6 +15,8 @@ class CreatePlayersTable < ActiveRecord::Migration
       t.string :rotowire_url
       t.float :adp
       t.float :adp_ppr
+
+      t.timestamps null: false
     end
   end
 end
