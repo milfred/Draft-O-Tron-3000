@@ -62,17 +62,26 @@
     <% @players.each_with_index do |player, index| %>
 
       <% if player.team %>
-        <tr class="ui-state-default">
-          <td class="rank"><%= index + 1 %></td>
+
+      <% if player.draft_status(@sheet) == 'targeted' %>
+        <tr id="<%= player.id %>" class="ui-state-default targeted-player">
+      <% elsif player.draft_status(@sheet) == 'drafted' %>
+        <tr id="<%= player.id %>" class="ui-state-default drafted-player">
+      <% elsif player.draft_status(@sheet) == 'unavailable' %>
+        <tr id="<%= player.id %>" class="ui-state-defaul unavailable-player">
+      <% else player.draft_status(@sheet) == 'available' %>
+        <tr id="<%= player.id %>" class="ui-state-default">
+      <% end %>
+          <td id="<%= player.rankings.find_by(sheet_id: @sheet.id).id %>" class="rank"><%= index + 1 %></td>
           <td class="normal-weight player-name">
-            <a id="<%= player.id %>" class="player-stats" href=""><%= player.name %></a>
+            <a class="player-stats" href=""><%= player.name %></a>
           </td>
           <td class="text-center">
-            <select class="player-status light-weight">
-              <option value="available">Available</option>
-              <option value="targeted">Targeted</option>
-              <option value="drafted">Drafted</option>
-              <option value="unavailable">Unavailable</option>
+            <select id="<%= player.rankings.find_by(sheet_id: @sheet.id).id %>" class="player-status light-weight">
+              <option <% if player.draft_status(@sheet) == 'available' %>selected<% end %> value="available">Available</option>
+              <option <% if player.draft_status(@sheet) == 'targeted' %>selected<% end %> value="targeted">Targeted</option>
+              <option <% if player.draft_status(@sheet) == 'drafted' %>selected<% end %> value="drafted">Drafted</option>
+              <option <% if player.draft_status(@sheet) == 'unavailable' %>selected<% end %> value="unavailable">Unavailable</option>
             </select>
           </td>
           <% if player.adp_ppr != 2000 %>

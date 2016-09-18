@@ -3,8 +3,8 @@ class Sheet < ActiveRecord::Base
   has_many :ranked_players, through: :rankings, source: :player
 
   after_initialize :init
-  after_create :create_rankings, :create_slug!
-  after_save :update_avg_projs!, :set_ranks!
+  after_create :create_rankings, :create_slug!, :set_ranks!
+  after_save :update_avg_projs!
 
   extend FriendlyId
   friendly_id :url_parameter, use: :finders
@@ -55,7 +55,11 @@ class Sheet < ActiveRecord::Base
     self.rankings.sort do |a,b|
       player_a = Player.find(a.player_id)
       player_b = Player.find(b.player_id)
-      player_a.adp_ppr <=> player_b.adp_ppr
+      if self.rec_pts <= 0
+        player_a.adp <=> player_b.adp_ppr
+      else
+        player_a.adp_ppr <=> player_b.adp_ppr
+      end
     end
   end
 
