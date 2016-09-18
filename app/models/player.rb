@@ -20,16 +20,29 @@ class Player < ActiveRecord::Base
   end
 
   def adj_proj(sheet, year)
-    @pos_data = {
+    pos_data = {
       "QB" => {correlation_str: 0.60, avg_proj: sheet.avg_qb_proj},
       "RB" => {correlation_str: 0.48, avg_proj: sheet.avg_rb_proj},
       "WR" => {correlation_str: 0.42, avg_proj: sheet.avg_wr_proj},
       "TE" => {correlation_str: 0.62, avg_proj: sheet.avg_te_proj},
     }
     if self.player_stats.where(season: year)
-      (@pos_data[self.position][:correlation_str] * (self.total_points(sheet, year) - @pos_data[self.position][:avg_proj])) + @pos_data[self.position][:avg_proj]
+      (pos_data[self.position][:correlation_str] * (self.total_points(sheet, year) - pos_data[self.position][:avg_proj])) + pos_data[self.position][:avg_proj]
     else
       0
+    end
+  end
+
+  def draft_status(sheet)
+    status = self.rankings.find_by(sheet_id: sheet.id).status
+    if status == 0
+      return "available"
+    elsif status == 1
+      return "targeted"
+    elsif status == 2
+      return "drafted"
+    elsif status == 3
+      return "unavailable"
     end
   end
 
