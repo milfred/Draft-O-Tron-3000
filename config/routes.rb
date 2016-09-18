@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 
   resources :sheets, only: [:show, :update, :create]
   resources :measurables, only: [:show]
+  resources :rankings, only: [:update]
 
 end

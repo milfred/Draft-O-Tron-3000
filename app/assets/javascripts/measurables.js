@@ -10,7 +10,7 @@ $(function() {
 
     $(".stats-container").remove();
     var $player = $(this);
-    var playerId = $(this).attr("id");
+    var playerId = $(this).closest("tr").attr("id");
 
     console.log(playerId);
 
@@ -21,7 +21,6 @@ $(function() {
     });
 
     request.done(function(response) {
-      console.log(response);
       $player.after(response);
     });
   });

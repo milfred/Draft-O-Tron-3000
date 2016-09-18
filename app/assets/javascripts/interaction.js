@@ -2,30 +2,38 @@ $(function() {
   $(".scroll-to-top").hide();
   $(".drafted-players").hide();
 
-
   $(".player-status").change(function() {
     var $selectStatus = $(this);
-    var $playerName = $selectStatus.closest("tr").find(".player-name");
+    var statusValue = $selectStatus.val();
+    var playerName = $selectStatus.closest("tr").find(".player-name");
+    var rankingId = $selectStatus.attr("id");
+    var statusLookup = {
+      available: 0,
+      targeted: 1,
+      drafted: 2,
+      unavailable: 3
+    };
+    var data = "status=" + statusLookup[statusValue];
+
     $selectStatus.closest("tr").removeClass("targeted-player drafted-player unavailable-player");
+
     if ($selectStatus.val() === "targeted") {
       $selectStatus.closest("tr").addClass("targeted-player");
-      $selectStatus.css("background-image", "url('/assets/down-arrow-gray.png')");
-      $playerName.css("background-image", "url('/assets/move-white.png')");
     } else if ($selectStatus.val() === "drafted") {
       $selectStatus.closest("tr").addClass("drafted-player");
-      $selectStatus.css("background-image", "url('/assets/down-arrow-white.png')");
-      $playerName.css("background-image", "url('/assets/move-white.png')");
-      $(".drafted-players #drafted-players-list").append("<li>" + $playerName.find("a").text() + "</li>");
+      $(".drafted-players #drafted-players-list").append("<li>" + playerName.find("a").text() + "</li>");
       $(".drafted-players").fadeIn(1000);
       $(".drafted-players").delay(3000).fadeOut(1000);
     } else if ($selectStatus.val() === "unavailable") {
       $selectStatus.closest("tr").addClass("unavailable-player");
-      $selectStatus.css("background-image", "url('/assets/down-arrow-gray.png')");
-      $playerName.css("background-image", "url('/assets/move-white.png')");
-    } else {
-      $selectStatus.css("background-image", "url('/assets/down-arrow.png')");
-      $playerName.css("background-image", "url('/assets/move-dark.png')");
     }
+
+    var request = $.ajax({
+      url: "/rankings/" + rankingId,
+      method: "PATCH",
+      data: data
+    });
+
   });
 
   var $table = $('table.players');
@@ -61,6 +69,14 @@ $(function() {
   function updateRank() {
     $(".rank").each(function(index) {
       $(this).html(index + 1);
+      var data = "player_rank=" + $(this).html();
+      var rankingId = $(this).attr("id");
+
+      var request = $.ajax({
+        url: "/rankings/" + rankingId,
+        method: "PATCH",
+        data: data
+      });
     });
   }
 
