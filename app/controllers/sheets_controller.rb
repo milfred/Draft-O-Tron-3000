@@ -2,13 +2,18 @@ class SheetsController < ApplicationController
 
   def show
     @sheet = Sheet.find(params[:id])
-    @players = @sheet.rankings.map {|ranking| Player.find(ranking.player_id)}
-    render "show"
+    if params[:id] == @sheet.url_parameter
+      @players = @sheet.rankings.map {|ranking| Player.find(ranking.player_id)}.first(300)
+      render "show"
+    else
+      render :file => "#{Rails.root}/public/404.html",  :status => 404
+    end
   end
 
   def update
     sheet = Sheet.find(params[:id])
     sheet.update!(sheet_params)
+    p params
 
     render nothing: true
   end

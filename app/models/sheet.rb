@@ -55,7 +55,11 @@ class Sheet < ActiveRecord::Base
     self.rankings.sort do |a,b|
       player_a = Player.find(a.player_id)
       player_b = Player.find(b.player_id)
-      player_a.adp_ppr <=> player_b.adp_ppr
+      if self.rec_pts <= 0
+        player_a.adp <=> player_b.adp_ppr
+      else
+        player_a.adp_ppr <=> player_b.adp_ppr
+      end
     end
   end
 

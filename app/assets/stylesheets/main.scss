@@ -98,18 +98,55 @@ header {
     }
   }
 
-  .targeted-player, .targeted-player a {
-    background: $contrast !important;
+  .targeted-player {
+    background-color: $contrast !important;
     color: $lightGray;
+    a {
+      color: $lightGray;
+    }
+    select {
+      background-image: url('down-arrow-gray.png');
+    }
+    .player-name {
+      background-image: url('move-white.png');
+      .player-stats {
+        background-image: url('bar-chart-white.png');
+      }
+    }
   }
-  .drafted-player, .drafted-player a {
-    background: $mediumHighlight !important;
+  .drafted-player {
+    background-color: $mediumHighlight !important;
     color: $white;
+    a {
+      color: $white;
+    }
+    select {
+      background-image: url('down-arrow-white.png');
+    }
+    .player-name {
+      background-image: url('move-white.png');
+      .player-stats {
+        background-image: url('bar-chart-white.png');
+      }
+    }
   }
-  .unavailable-player, .unavailable-player a {
-    background: $slate !important;
+  .unavailable-player {
+    background-color: $slate !important;
     color: $lightGray;
     text-decoration: line-through;
+    a {
+      color: $lightGray;
+      text-decoration: line-through;
+    }
+    select {
+      background-image: url('down-arrow-gray.png');
+    }
+    .player-name {
+      background-image: url('move-white.png');
+      .player-stats {
+        background-image: url('bar-chart-white.png');
+      }
+    }
   }
 }
 
@@ -218,10 +255,7 @@ header {
   position: fixed;
   top: 200px;
   right: 100px;
-  // top: 50%;
-  // left: 50%;
   line-height: 20px;
-  // margin: -200px 0 0 -150px;
   padding: 20px;
   background: $white;
   opacity: .9;
