@@ -148,6 +148,15 @@ header {
       }
     }
   }
+  .stats-container {
+    color: $dark;
+    a {
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 }
 
 #scoring-data {
