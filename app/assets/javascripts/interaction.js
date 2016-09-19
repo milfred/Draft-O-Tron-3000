@@ -89,4 +89,8 @@ $(function() {
       $(".menu-button").css("opacity", "1");
     });
 
+    if ($(".remove-unavailable").is(":checked")) {
+      
+    }
+
 });
