@@ -77,16 +77,16 @@ header {
 
   .player-name {
     position: relative;
-    background: transparent url('move-dark.png') 95% center/17px 17px no-repeat;
+    background: transparent image-url('move-dark.png') 95% center/17px 17px no-repeat;
     padding-right: 30px;
     .player-stats {
       padding-right: 20px;
-      background: transparent url('bar-chart.png') right center/15px 15px no-repeat;
+      background: transparent image-url('bar-chart.png') right center/15px 15px no-repeat;
       text-decoration: none;
     }
   }
   select {
-    background: transparent url('down-arrow.png') right/15px 15px no-repeat;
+    background: transparent image-url('down-arrow.png') right/15px 15px no-repeat;
 	  -moz-appearance: none;
 	  -webkit-appearance: none;
     padding-right: 20px;
@@ -105,12 +105,12 @@ header {
       color: $lightGray;
     }
     select {
-      background-image: url('down-arrow-gray.png');
+      background-image: image-url('down-arrow-gray.png');
     }
     .player-name {
-      background-image: url('move-white.png');
+      background-image: image-url('move-white.png');
       .player-stats {
-        background-image: url('bar-chart-white.png');
+        background-image: image-url('bar-chart-white.png');
       }
     }
   }
@@ -121,12 +121,12 @@ header {
       color: $white;
     }
     select {
-      background-image: url('down-arrow-white.png');
+      background-image: image-url('down-arrow-white.png');
     }
     .player-name {
-      background-image: url('move-white.png');
+      background-image: image-url('move-white.png');
       .player-stats {
-        background-image: url('bar-chart-white.png');
+        background-image: image-url('bar-chart-white.png');
       }
     }
   }
@@ -139,12 +139,12 @@ header {
       text-decoration: line-through;
     }
     select {
-      background-image: url('down-arrow-gray.png');
+      background-image: image-url('down-arrow-gray.png');
     }
     .player-name {
-      background-image: url('move-white.png');
+      background-image: image-url('move-white.png');
       .player-stats {
-        background-image: url('bar-chart-white.png');
+        background-image: image-url('bar-chart-white.png');
       }
     }
   }
@@ -304,7 +304,7 @@ header {
       color: $dark;
       font-size: 16px;
       padding-left: 20px;
-      background: transparent url("news-icon.png") left center/15px 15px no-repeat;
+      background: transparent image-url("news-icon.png") left center/15px 15px no-repeat;
     }
   }
   .projections {
