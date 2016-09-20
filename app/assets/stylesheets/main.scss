@@ -27,6 +27,11 @@ header {
   h1 {
     font-size: 32px;
     display: inline-block;
+    .effs {
+      font-size: 94%;
+      letter-spacing: -2px;
+      padding-right: 4px;
+    }
   }
   .menu-button {
     transition: opacity 1s;
@@ -310,6 +315,23 @@ header {
   .projections {
     background: $lightContrast;
     color: $white;
+  }
+}
+
+.create-sheet {
+  height: 500px;
+  background-color: $lightSlate;
+  padding: 215px 0;
+  .create-sheet-button {
+    display: block;
+    width: 400px;
+    font-size: 30px;
+    color: $white;
+    background: $highlight;
+    border: none;
+    border-radius: none;
+    padding: 20px 30px;
+    margin: 0 auto;
   }
 }
 
