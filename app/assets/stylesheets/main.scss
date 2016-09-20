@@ -24,13 +24,16 @@ header {
   padding: 10px;
   background: $contrast;
   color: $white;
-  h1 {
-    font-size: 32px;
-    display: inline-block;
-    .effs {
-      font-size: 94%;
-      letter-spacing: -2px;
-      padding-right: 4px;
+  a {
+    h1 {
+      color: $white;
+      font-size: 32px;
+      display: inline-block;
+      .effs {
+        font-size: 94%;
+        letter-spacing: -2px;
+        padding-right: 4px;
+      }
     }
   }
   .menu-button {
@@ -319,19 +322,28 @@ header {
 }
 
 .create-sheet {
-  height: 500px;
-  background-color: $lightSlate;
-  padding: 215px 0;
+  height: 400px;
+  background-color: $lightContrast;
+  padding: 165px 0;
   .create-sheet-button {
     display: block;
     width: 400px;
     font-size: 30px;
-    color: $white;
-    background: $highlight;
+    color: $contrast;
+    background: $white;
     border: none;
     border-radius: none;
     padding: 20px 30px;
     margin: 0 auto;
+    cursor: pointer;
+    @include shadow(2px, 2px, 5px, darken($contrast, 30%));
+    transition: background 500ms;
+    transition: box-shadow 500ms;
+    &:hover {
+      @include shadow(0, 0, 0, transparent);
+      transition: background 500ms;
+      transition: box-shadow 500ms;
+    }
   }
 }
 
