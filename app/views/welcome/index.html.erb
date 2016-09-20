@@ -1,1 +1,3 @@
-<%= button_to 'create', {:controller => 'sheets', :action => 'create'}, :method => 'post' %>
+<section class="create-sheet">
+  <%= button_to 'CREATE A DRAFT SHEET', {:controller => 'sheets', :action => 'create'}, :method => 'post', class: 'create-sheet-button light-weight' %>
+</section>
