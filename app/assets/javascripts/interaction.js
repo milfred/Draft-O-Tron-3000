@@ -37,7 +37,7 @@ $(function() {
   });
 
   var $table = $('table.players');
-  $table.floatThead();
+  $table.floatThead({top: 54});
 
   // Check to see if the window is top if not then display button
 	$(window).scroll(function(){
