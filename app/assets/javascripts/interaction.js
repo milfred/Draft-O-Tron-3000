@@ -42,7 +42,7 @@ $(function() {
   // Check to see if the window is top if not then display button
 	$(window).scroll(function(){
 
-		if ($(this).scrollTop() > 100) {
+		if ($(this).scrollTop() > 500) {
 			$('.scroll-to-top').fadeIn();
 		} else {
 			$('.scroll-to-top').fadeOut();
@@ -85,12 +85,21 @@ $(function() {
       $(".menu-button").css("opacity", "0");
     });
     $(".close-arrow").on("click", function() {
-      $("#scoring-data").css("right", "-250px");
+      $("#scoring-data").css("right", "-400px");
       $(".menu-button").css("opacity", "1");
     });
 
-    if ($(".remove-unavailable").is(":checked")) {
-      
-    }
+    $('a[href*="#"]:not([href="#"])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html, body').animate({
+            scrollTop: target.offset().top
+          }, 500);
+          return false;
+        }
+      }
+    });
 
 });

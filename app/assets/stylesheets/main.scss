@@ -13,9 +13,7 @@ body {
 
 a {
   color: $dark;
-  &:hover {
     text-decoration: none;
-  }
 }
 
 header {
@@ -26,14 +24,7 @@ header {
   color: $white;
   a {
     h1 {
-      color: $white;
-      font-size: 32px;
-      display: inline-block;
-      .effs {
-        font-size: 94%;
-        letter-spacing: -2px;
-        padding-right: 4px;
-      }
+      @include logo($white, 32px);
     }
   }
   .menu-button {
@@ -70,7 +61,7 @@ header {
   }
   thead {
     tr {
-      background: $highlight;
+      background: $darkHighlight;
       opacity: 0.9;
     }
     th {
@@ -171,8 +162,8 @@ header {
   position: fixed;
   top: 0;
   bottom: 0;
-  right: -250px;
-  width: 250px;
+  right: -400px;
+  width: 400px;
   color: $white;
   background: $highlight;
   opacity: .9;
@@ -235,8 +226,9 @@ header {
   height: 50px;
   width: 50px;
   position: fixed;
-  bottom: 50px;
-  left: 50px;
+  bottom: 100px;
+  left: 50%;
+  margin-left: -25px;
   img {
     height: 50px;
     width: 50px;
@@ -322,31 +314,40 @@ header {
 }
 
 .create-sheet {
-  height: 400px;
-  background-color: $lightContrast;
-  padding: 165px 0;
+  background: $lightContrast image-url("football-practice.jpg") right top no-repeat;
+  width: 100%;
+  background-size: cover;
+  height: 100vh;
+  padding-top: 165px;
+  text-align: center;
   .create-sheet-button {
-    display: block;
-    width: 400px;
-    font-size: 30px;
-    color: $contrast;
-    background: $white;
-    border: none;
-    border-radius: none;
+    @include logo($contrast, 32px);
     padding: 20px 30px;
-    margin: 0 auto;
-    cursor: pointer;
-    @include shadow(2px, 2px, 5px, darken($contrast, 30%));
-    transition: background 500ms;
-    transition: box-shadow 500ms;
-    &:hover {
-      @include shadow(0, 0, 0, transparent);
-      transition: background 500ms;
-      transition: box-shadow 500ms;
-    }
+    margin: 0 0 70px;
+  }
+  .tagline {
+    color: $white;
+    font-size: 24px;
+    margin: 0 0 235px;
   }
 }
+#learn-more {
+  background: $dark;
+  height: 100vh;
+}
 
+.button {
+  color: $contrast;
+  background: $white;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: box-shadow 500ms;
+  &:hover {
+    @include shadow(0, 0, 0, transparent);
+    transition: box-shadow 500ms;
+  }
+}
 .hide {
   display: none;
 }
@@ -369,9 +370,10 @@ header {
   font-style: italic;
 }
 .shadow {
-  -webkit-box-shadow: 2px 2px 10px $dark;
-  -moz-box-shadow: 2px 2px 10px $dark;
-  box-shadow: 2px 2px 10px $dark;
+  @include shadow(2px, 2px, 5px, darken($highlight, 50%));
+}
+.text-shadow {
+  text-shadow: 2px 2px 4px darken($highlight, 50%);
 }
 .text-center {
   text-align: center;
@@ -379,8 +381,17 @@ header {
 .highlight {
   color: $highlight;
 }
+.white {
+  color: $white;
+}
 .right {
   float: right;
+}
+.med-image-size {
+  width: 50px;
+  filter: drop-shadow(1px 1px 3px $darkSlate);
+  -webkit-filter: drop-shadow(1px 1px 3px $darkSlate);
+  margin-bottom: 5px;
 }
 .clearfix {
   overflow: hidden;
