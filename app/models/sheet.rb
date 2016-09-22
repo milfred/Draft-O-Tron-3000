@@ -3,7 +3,7 @@ class Sheet < ActiveRecord::Base
   has_many :ranked_players, through: :rankings, source: :player
 
   after_initialize :init
-  after_create :create_rankings, :create_slug!, :set_ranks!
+  after_create :create_rankings, :create_slug!
   after_save :update_avg_projs!
 
   extend FriendlyId
@@ -48,25 +48,8 @@ class Sheet < ActiveRecord::Base
   end
 
   def create_rankings
-    Player.all.each {|player| Ranking.create!(player_id: player.id, sheet_id: self.id)}
-  end
-
-  def ordered_rankings
-    self.rankings.sort do |a,b|
-      player_a = Player.find(a.player_id)
-      player_b = Player.find(b.player_id)
-      if self.rec_pts <= 0
-        player_a.adp <=> player_b.adp_ppr
-      else
-        player_a.adp_ppr <=> player_b.adp_ppr
-      end
-    end
-  end
-
-  def set_ranks!
-    ordered_rankings.each_with_index do |rank, index|
-      rank.update_column(:player_rank, index + 1)
-    end
+    players = Player.all.sort {|a,b| a.adp_ppr <=> b.adp_ppr}
+    players.first(300).each_with_index {|player, index| Ranking.create!(player_id: player.id, sheet_id: self.id, player_rank: index + 1)}
   end
 
   def create_slug!
