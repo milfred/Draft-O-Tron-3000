@@ -14,7 +14,7 @@ $(function() {
         data: data
       });
 
-      $("#scoring-data").css("right", "-250px");
+      $("#scoring-data").css("right", "-400px");
       $(".menu-button").css("opacity", "1");
       location.reload(true);
   });
