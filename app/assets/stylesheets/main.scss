@@ -17,11 +17,24 @@ a {
 }
 
 header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
   min-width: 100%;
   height: 54px;
   padding: 10px;
   background: $contrast;
   color: $white;
+  z-index: 1999;
+  .bookmark {
+    vertical-align: middle;
+    background: image-url("important.png") left 15%/17px 17px no-repeat;
+    padding-left: 23px;
+    height: 20px;
+    margin: 0 0 10px 50px;
+    cursor: pointer;
+  }
   a {
     h1 {
       @include logo($white, 32px);
@@ -47,6 +60,7 @@ header {
   min-width: 100%;
   height: 100%;
   border-collapse: collapse;
+  margin-top: 54px;
   tr {
     min-width: 100%;
     background: $lightGray;
