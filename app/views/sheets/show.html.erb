@@ -45,15 +45,6 @@
 		<tr>
 			<th>Rank</th>
       <th>Name</th>
-<<<<<<< HEAD
-      <th>Status</th>
-      <th>ADP</th>
-      <th>2015 TtlPts</th>
-      <th>PrjPts</th>
-      <th>AdjPrj</th>
-			<th>Pos</th>
-			<th>Team</th>
-=======
       <th>Pos</th>
       <th>Team</th>
       <th>Status</th>
@@ -61,7 +52,6 @@
       <th title="2015 total fantasy points">2015 TtlPts</th>
       <th title="2016 projected total points">PrjPts</th>
       <th title="2016 adjusted projections">AdjPrj</th>
->>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
       <th>Bye</th>
       <th>Exp</th>
       <th>Drafted</th>
@@ -83,15 +73,10 @@
         <tr id="<%= player.id %>" class="ui-state-default">
       <% end %>
           <td id="<%= player.rankings.find_by(sheet_id: @sheet.id).id %>" class="rank"><%= index + 1 %></td>
-<<<<<<< HEAD
-          <td class="normal-weight player-name">
-            <a class="player-stats" href=""><%= player.name %></a>
-=======
           <td class="normal-weight player-name" title="drag and drop to change player rank">
             <a class="player-stats" href="" title="view player stats"><%= player.name %></a>
             <td><%= player.position + player.depth_order.to_s %></td>
             <td><%= player.team %></td>
->>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
           </td>
           <td class="text-center">
             <select id="<%= player.rankings.find_by(sheet_id: @sheet.id).id %>" class="player-status light-weight">
@@ -113,11 +98,6 @@
           <% end %>
           <td><%= player.total_points(@sheet, 2016).round(2) %></td>
           <td><%= player.adj_proj(@sheet, 2016).round(2) %></td>
-<<<<<<< HEAD
-          <td><%= player.position + player.depth_order.to_s %></td>
-          <td><%= player.team %></td>
-=======
->>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
           <td><%= player.bye_week %></td>
           <% if player.experience == 0 %>
             <td>Rookie</td>

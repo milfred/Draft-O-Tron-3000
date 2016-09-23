@@ -3,11 +3,7 @@ class SheetsController < ApplicationController
   def show
     @sheet = Sheet.find(params[:id])
     if params[:id] == @sheet.url_parameter
-<<<<<<< HEAD
-      @players = @sheet.rankings.map {|ranking| Player.find(ranking.player_id)}.first(300)
-=======
       @players = @sheet.rankings.map {|ranking| Player.find(ranking.player_id)}
->>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
       render "show"
     else
       render :file => "#{Rails.root}/public/404.html",  :status => 404

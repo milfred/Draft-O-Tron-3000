@@ -4,10 +4,6 @@
   box-shadow: $x $y $blur $color;
 }
 
-<<<<<<< HEAD
-@mixin row-theme() {
-  
-=======
 @mixin logo($fontColor, $fontSize) {
   color: $fontColor;
   font-size: $fontSize;
@@ -17,5 +13,3 @@
     letter-spacing: -0.05em;
     padding-right: 0.1em;
   }
->>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
-}
