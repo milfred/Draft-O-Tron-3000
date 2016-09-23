@@ -13,20 +13,47 @@ body {
 
 a {
   color: $dark;
+<<<<<<< HEAD
   &:hover {
     text-decoration: none;
   }
 }
 
 header {
+=======
+    text-decoration: none;
+}
+
+header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
   min-width: 100%;
   height: 54px;
   padding: 10px;
   background: $contrast;
   color: $white;
+<<<<<<< HEAD
   h1 {
     font-size: 32px;
     display: inline-block;
+=======
+  z-index: 1999;
+  .bookmark {
+    vertical-align: middle;
+    background: image-url("important.png") left 15%/17px 17px no-repeat;
+    padding-left: 23px;
+    height: 20px;
+    margin: 0 0 10px 50px;
+    cursor: pointer;
+  }
+  a {
+    h1 {
+      @include logo($white, 32px);
+    }
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
   }
   .menu-button {
     transition: opacity 1s;
@@ -48,6 +75,10 @@ header {
   min-width: 100%;
   height: 100%;
   border-collapse: collapse;
+<<<<<<< HEAD
+=======
+  margin-top: 54px;
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
   tr {
     min-width: 100%;
     background: $lightGray;
@@ -62,7 +93,11 @@ header {
   }
   thead {
     tr {
+<<<<<<< HEAD
       background: $highlight;
+=======
+      background: $darkHighlight;
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
       opacity: 0.9;
     }
     th {
@@ -77,16 +112,28 @@ header {
 
   .player-name {
     position: relative;
+<<<<<<< HEAD
     background: transparent url('move-dark.png') 95% center/17px 17px no-repeat;
     padding-right: 30px;
     .player-stats {
       padding-right: 20px;
       background: transparent url('bar-chart.png') right center/15px 15px no-repeat;
+=======
+    background: transparent image-url('move-dark.png') 95% center/17px 17px no-repeat;
+    padding-right: 30px;
+    .player-stats {
+      padding-right: 20px;
+      background: transparent image-url('bar-chart.png') right center/15px 15px no-repeat;
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
       text-decoration: none;
     }
   }
   select {
+<<<<<<< HEAD
     background: transparent url('down-arrow.png') right/15px 15px no-repeat;
+=======
+    background: transparent image-url('down-arrow.png') right/15px 15px no-repeat;
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
 	  -moz-appearance: none;
 	  -webkit-appearance: none;
     padding-right: 20px;
@@ -105,12 +152,21 @@ header {
       color: $lightGray;
     }
     select {
+<<<<<<< HEAD
       background-image: url('down-arrow-gray.png');
     }
     .player-name {
       background-image: url('move-white.png');
       .player-stats {
         background-image: url('bar-chart-white.png');
+=======
+      background-image: image-url('down-arrow-gray.png');
+    }
+    .player-name {
+      background-image: image-url('move-white.png');
+      .player-stats {
+        background-image: image-url('bar-chart-white.png');
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
       }
     }
   }
@@ -121,12 +177,21 @@ header {
       color: $white;
     }
     select {
+<<<<<<< HEAD
       background-image: url('down-arrow-white.png');
     }
     .player-name {
       background-image: url('move-white.png');
       .player-stats {
         background-image: url('bar-chart-white.png');
+=======
+      background-image: image-url('down-arrow-white.png');
+    }
+    .player-name {
+      background-image: image-url('move-white.png');
+      .player-stats {
+        background-image: image-url('bar-chart-white.png');
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
       }
     }
   }
@@ -139,12 +204,30 @@ header {
       text-decoration: line-through;
     }
     select {
+<<<<<<< HEAD
       background-image: url('down-arrow-gray.png');
     }
     .player-name {
       background-image: url('move-white.png');
       .player-stats {
         background-image: url('bar-chart-white.png');
+=======
+      background-image: image-url('down-arrow-gray.png');
+    }
+    .player-name {
+      background-image: image-url('move-white.png');
+      .player-stats {
+        background-image: image-url('bar-chart-white.png');
+      }
+    }
+  }
+  .stats-container {
+    color: $dark;
+    a {
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
       }
     }
   }
@@ -154,8 +237,13 @@ header {
   position: fixed;
   top: 0;
   bottom: 0;
+<<<<<<< HEAD
   right: -250px;
   width: 250px;
+=======
+  right: -400px;
+  width: 400px;
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
   color: $white;
   background: $highlight;
   opacity: .9;
@@ -218,8 +306,14 @@ header {
   height: 50px;
   width: 50px;
   position: fixed;
+<<<<<<< HEAD
   bottom: 50px;
   right: 50px;
+=======
+  bottom: 100px;
+  left: 50%;
+  margin-left: -25px;
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
   img {
     height: 50px;
     width: 50px;
@@ -295,7 +389,11 @@ header {
       color: $dark;
       font-size: 16px;
       padding-left: 20px;
+<<<<<<< HEAD
       background: transparent url("news-icon.png") left center/15px 15px no-repeat;
+=======
+      background: transparent image-url("news-icon.png") left center/15px 15px no-repeat;
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
     }
   }
   .projections {
@@ -304,6 +402,44 @@ header {
   }
 }
 
+<<<<<<< HEAD
+=======
+.create-sheet {
+  background: $lightContrast image-url("football-practice.jpg") right top no-repeat;
+  width: 100%;
+  background-size: cover;
+  height: 100vh;
+  padding-top: 165px;
+  text-align: center;
+  .create-sheet-button {
+    @include logo($contrast, 32px);
+    padding: 20px 30px;
+    margin: 0 0 70px;
+  }
+  .tagline {
+    color: $white;
+    font-size: 24px;
+    margin: 0 0 235px;
+  }
+}
+#learn-more {
+  background: $dark;
+  height: 100vh;
+}
+
+.button {
+  color: $contrast;
+  background: $white;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: box-shadow 500ms;
+  &:hover {
+    @include shadow(0, 0, 0, transparent);
+    transition: box-shadow 500ms;
+  }
+}
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
 .hide {
   display: none;
 }
@@ -326,9 +462,16 @@ header {
   font-style: italic;
 }
 .shadow {
+<<<<<<< HEAD
   -webkit-box-shadow: 2px 2px 10px $dark;
   -moz-box-shadow: 2px 2px 10px $dark;
   box-shadow: 2px 2px 10px $dark;
+=======
+  @include shadow(2px, 2px, 5px, darken($highlight, 50%));
+}
+.text-shadow {
+  text-shadow: 2px 2px 4px darken($highlight, 50%);
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
 }
 .text-center {
   text-align: center;
@@ -336,9 +479,24 @@ header {
 .highlight {
   color: $highlight;
 }
+<<<<<<< HEAD
 .right {
   float: right;
 }
+=======
+.white {
+  color: $white;
+}
+.right {
+  float: right;
+}
+.med-image-size {
+  width: 50px;
+  filter: drop-shadow(1px 1px 3px $darkSlate);
+  -webkit-filter: drop-shadow(1px 1px 3px $darkSlate);
+  margin-bottom: 5px;
+}
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
 .clearfix {
   overflow: hidden;
   zoom: 1;

@@ -187,5 +187,8 @@ adp_data.each do |player|
     player_to_update.update(adp_ppr: player["AverageDraftPositionPPR"])
   end
 end
+<<<<<<< HEAD
 
 Sheet.create!
+=======
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1

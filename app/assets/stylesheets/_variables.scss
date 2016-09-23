@@ -2,9 +2,17 @@
 $white: rgba(255,255,255,1);
 $lightGray: rgba(242,242,242,1);
 $slate: rgba(171,185,196,1);
+<<<<<<< HEAD
 $lightSlate: lighten($slate, 15%);
 $dark: rgba(6,57,64,1);
 $highlight: rgba(50,153,187,1);
+=======
+$darkSlate: darken($slate, 40%);
+$lightSlate: lighten($slate, 15%);
+$dark: rgba(6,57,64,1);
+$highlight: rgba(50,153,187,1);
+$darkHighlight: darken($highlight, 10%);
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
 $mediumHighlight: lighten($highlight, 5%);
 $lightHighlight: lighten($highlight, 20%);
 $contrast: rgba(237,48,60,1);

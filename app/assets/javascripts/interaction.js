@@ -37,12 +37,20 @@ $(function() {
   });
 
   var $table = $('table.players');
+<<<<<<< HEAD
   $table.floatThead();
+=======
+  $table.floatThead({top: 54});
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
 
   // Check to see if the window is top if not then display button
 	$(window).scroll(function(){
 
+<<<<<<< HEAD
 		if ($(this).scrollTop() > 100) {
+=======
+		if ($(this).scrollTop() > 500) {
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
 			$('.scroll-to-top').fadeIn();
 		} else {
 			$('.scroll-to-top').fadeOut();
@@ -85,8 +93,28 @@ $(function() {
       $(".menu-button").css("opacity", "0");
     });
     $(".close-arrow").on("click", function() {
+<<<<<<< HEAD
       $("#scoring-data").css("right", "-250px");
       $(".menu-button").css("opacity", "1");
     });
 
+=======
+      $("#scoring-data").css("right", "-400px");
+      $(".menu-button").css("opacity", "1");
+    });
+
+    $('a[href*="#"]:not([href="#"])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html, body').animate({
+            scrollTop: target.offset().top
+          }, 500);
+          return false;
+        }
+      }
+    });
+
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
 });

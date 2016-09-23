@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+<<<<<<< HEAD
     <title>DRAFT-O-TRON 3000</title>
+=======
+    <title>DRAffTR | An Intelligent Fantasy Football Draft Cheatsheet</title>
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|Slabo+27px" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
@@ -10,11 +14,24 @@
   </head>
   <body>
     <header class="clearfix">
+<<<<<<< HEAD
       <h1><span class="light-weight">DRAFT-O-TRON</span> 3000</h1>
       <div class="menu-button right">
         <span class="inline-block">settings</span>
         <%= image_tag("left-arrow-white.png", class: "inline-block", alt: "Menu Bars") %>
       </div>
+=======
+      <a class="white" href="/">
+        <h1 class="light-weight">DRA<span class="effs">ff</span><span class="light-weight">TR</span></h1>
+      </a>
+      <% if @sheet %>
+        <a class="bookmark inline-block white" href="javascript:bookmarksite('TITLE', 'URL')">Bookmark this page!</a>
+        <div class="menu-button right">
+          <span class="inline-block">settings</span>
+          <%= image_tag("left-arrow-white.png", class: "inline-block", alt: "Menu Bars") %>
+        </div>
+      <% end %>
+>>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
     </header>
 
   <%= yield %>
