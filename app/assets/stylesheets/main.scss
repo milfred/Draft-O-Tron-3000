@@ -13,9 +13,7 @@ body {
 
 a {
   color: $dark;
-  &:hover {
-    text-decoration: none;
-  }
+  text-decoration: none;
 }
 
 header {
@@ -28,6 +26,7 @@ header {
   padding: 10px;
   background: $contrast;
   color: $white;
+  z-index: 1999;
   .bookmark {
     vertical-align: middle;
     background: image-url("important.png") left 15%/17px 17px no-repeat;
@@ -61,6 +60,7 @@ header {
   min-width: 100%;
   height: 100%;
   border-collapse: collapse;
+  margin-top: 54px;
   tr {
     min-width: 100%;
     background: $lightGray;
