@@ -1,0 +1,17 @@
+// color palette
+$white: rgba(255,255,255,1);
+$lightGray: rgba(242,242,242,1);
+$slate: rgba(171,185,196,1);
+$lightSlate: lighten($slate, 15%);
+$darkSlate: darken($slate, 40%);
+$dark: rgba(6,57,64,1);
+$highlight: rgba(50,153,187,1);
+$lightHighlight: lighten($highlight, 20%);
+$mediumHighlight: lighten($highlight, 5%);
+$darkHighlight: darken($highlight, 10%);
+$contrast: rgba(237,48,60,1);
+$lightContrast: lighten($contrast, 10%);
+
+// fonts
+$roboto: 'Roboto', sans-serif;
+$slabo: 'Slabo 27px', serif;
