@@ -8,6 +8,10 @@ html, body, div, span, object, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, co
 	outline: 0;
 	vertical-align: baseline;
 }
+
+ol, ul {
+	padding-left: 0;
+}
 /* HTML5 display-role reset for older browsers */
 article, aside, footer, header, menu, nav, section {
 	display: block;

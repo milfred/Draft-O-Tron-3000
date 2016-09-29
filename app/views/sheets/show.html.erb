@@ -1,7 +1,10 @@
-<aside id="scoring-data">
+<aside id="settings">
   <%= image_tag("right-arrow-white.png", class: "close-arrow block", alt: "Right Arrow Icon") %>
-  <div class="scoring">
-    <h3 class="light-weight">Scoring</h3>
+  <ul class="tabs clearfix">
+    <li id="scoring-tab" class="tab light-weight selected">Scoring</li>
+    <li id="search-tab" class="tab light-weight">Search</li>
+  </ul>
+  <div id="scoring" class="tab-content">
     <%= form_for @sheet, html: {class: "update-pt-values"} do |f| %>
       <div class="form-field block">
         <%= f.label :pass_yard_pts %>
@@ -36,6 +39,14 @@
         <%= f.text_field :rec_td_pts %>
       </div>
         <%= f.submit %>
+    <% end %>
+  </div>
+  <div id="search" class="tab-content">
+    <%= form_tag("/search", method: "get", html: {class: "search-for-player"}) do %>
+      <div class="form-field block">
+        <%= label_tag(:name, "") %>
+        <%= text_field_tag :name %>
+      </div>
     <% end %>
   </div>
 </aside>
