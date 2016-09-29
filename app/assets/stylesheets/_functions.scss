@@ -1,13 +1,13 @@
 @mixin shadow($x, $y, $blur, $color) {
+  box-shadow: $x $y $blur $color;
   -webkit-box-shadow: $x $y $blur $color;
   -moz-box-shadow: $x $y $blur $color;
-  box-shadow: $x $y $blur $color;
 }
 
 @mixin logo($fontColor, $fontSize) {
+  display: inline-block;
   color: $fontColor;
   font-size: $fontSize;
-  display: inline-block;
   .effs {
     font-size: 95%;
     letter-spacing: -0.05em;
