@@ -13,12 +13,7 @@ $(function() {
         method: method,
         data: data
       });
-
-<<<<<<< HEAD
-      $("#scoring-data").css("right", "-250px");
-=======
       $("#scoring-data").css("right", "-400px");
->>>>>>> 1fb2238ea81024b1075bcd78ea8362006d40a6f1
       $(".menu-button").css("opacity", "1");
       location.reload(true);
   });
