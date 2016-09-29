@@ -42,10 +42,18 @@
     <% end %>
   </div>
   <div id="search" class="tab-content">
-    <%= form_tag("/search", method: "get", html: {class: "search-for-player"}) do %>
+    <%= form_tag("/search", method: "get", html: {class: "search-form"}) do %>
       <div class="form-field block">
-        <%= label_tag(:name, "") %>
-        <%= text_field_tag :name %>
+        <select class="" name="">
+          <option>Find player</option>
+          <option>Update status to available</option>
+          <option>Update status to targeted</option>
+          <option>Update status to drafted</option>
+          <option>Update status to unavailable</option>
+        </select>
+      </div>
+      <div class="form-field block">
+        <%= text_field_tag :name, nil, class: "search-field", placeholder: "Player Name" %>
       </div>
     <% end %>
   </div>
