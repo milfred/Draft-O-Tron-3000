@@ -10,7 +10,6 @@ $(function() {
     var url = $(".search-form").attr("action");
     var data = "search=" + playerName;
     var setting = $(".search-setting").val();
-    console.log(url);
 
     if(playerName.length >= 3) {
       var request = $.ajax({
@@ -29,7 +28,7 @@ $(function() {
             fadeDelay += 50;
           });
         } else {
-          $("<li>No Results Found</li>").hide().appendTo("#search-results").fadeIn(100);
+          $("<li>No results found</li>").hide().appendTo("#search-results").fadeIn(100);
         }
       });
     } else {
