@@ -9,7 +9,6 @@ $(function() {
     var playerName = searchField.val();
     var url = $(".search-form").attr("action");
     var data = "search=" + playerName;
-    var setting = $(".search-setting").val();
 
     if(playerName.length >= 3) {
       var request = $.ajax({

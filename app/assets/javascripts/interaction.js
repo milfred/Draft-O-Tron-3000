@@ -57,9 +57,41 @@ $(function() {
 	});
 
   $("#search-results").on("click", "a", function() {
+    var playerLink = $(this);
+    var playerId = $(playerLink.attr('href')).selector;
+    var rankingId = $(playerId).find(".rank").attr("id");
+    var playerStatus = $(playerId).find(".player-status");
+    var searchSetting = $(".search-setting").val();
+    var statusLookup = {
+      available: 0,
+      targeted: 1,
+      drafted: 2,
+      unavailable: 3
+    };
+    var data = "status=" + statusLookup[searchSetting];
+
     $("body", "html").animate({
-      scrollTop : $($(this).attr('href')).offset().top - 85
+      scrollTop : $(playerLink.attr('href')).offset().top - 85
     }, 300);
+    if (searchSetting == "available") {
+      playerStatus.val("available");
+      playerStatus.closest("tr").removeClass("targeted-player drafted-player unavailable-player");
+    } else if (searchSetting == "drafted") {
+      playerStatus.val("drafted");
+      playerStatus.closest("tr").addClass("drafted-player");
+    } else if (searchSetting == "targeted") {
+      playerStatus.val("targeted");
+      playerStatus.closest("tr").addClass("targeted-player");
+    } else if (searchSetting == "unavailable") {
+      playerStatus.val("unavailable");
+      playerStatus.closest("tr").addClass("unavailable-player");
+    }
+
+    var request = $.ajax({
+      url: "/rankings/" + rankingId,
+      method: "PATCH",
+      data: data
+    });
   });
 
   $("#sortable").sortable({
