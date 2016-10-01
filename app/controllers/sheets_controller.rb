@@ -1,5 +1,11 @@
 class SheetsController < ApplicationController
 
+  def search
+    @sheet = Sheet.find(params[:id])
+    @results = @sheet.search(params[:search])
+    render json: @results
+  end
+
   def show
     @sheet = Sheet.find(params[:id])
     if params[:id] == @sheet.url_parameter
@@ -10,6 +16,14 @@ class SheetsController < ApplicationController
     end
   end
 
+  def create
+    @sheet = Sheet.new
+    if @sheet
+      @sheet.save
+      redirect_to "/sheets/#{@sheet.url_parameter}"
+    end
+  end
+  
   def update
     sheet = Sheet.find(params[:id])
     sheet.update!(sheet_params)
@@ -18,13 +32,7 @@ class SheetsController < ApplicationController
     render nothing: true
   end
 
-  def create
-    @sheet = Sheet.new
-    if @sheet
-      @sheet.save
-      redirect_to "/sheets/#{@sheet.url_parameter}"
-    end
-  end
+
 
   private
 

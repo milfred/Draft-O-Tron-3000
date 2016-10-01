@@ -56,6 +56,12 @@ $(function() {
 		return false;
 	});
 
+  $("#search-results").on("click", "a", function() {
+    $("body", "html").animate({
+      scrollTop : $($(this).attr('href')).offset().top - 85
+    }, 300);
+  });
+
   $("#sortable").sortable({
     containment: "parent",
     placeholder: "ui-sortable-placeholder",

@@ -177,6 +177,7 @@ header {
   bottom: 0;
   color: $white;
   opacity: .9;
+  overflow: scroll;
   padding: 10px 20px 20px;
   position: fixed;
   right: -400px;
@@ -206,7 +207,6 @@ header {
       font-size: 16px;
       transition: background 500ms;
       transition: box-shadow 500ms;
-      width: 120px;
       &:hover {
         @include shadow(0, 0, 0, transparent);
         transition: background 500ms;
@@ -389,6 +389,16 @@ header {
     border-bottom: 1px solid $highlight;
     cursor: default;
     z-index: 2;
+  }
+}
+
+#search-results {
+  margin-top: 20px;
+  a {
+    color: $white;
+  }
+  li {
+    padding: 5px 0;
   }
 }
 

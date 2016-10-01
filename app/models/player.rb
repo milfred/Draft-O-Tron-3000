@@ -5,9 +5,9 @@ class Player < ActiveRecord::Base
   has_many :rankings
   has_many :sheets, through: :rankings
 
-  def self.search(search_term)
-    where('lower(name) LIKE ?', "%#{search_term.downcase}%")
-  end
+  # def self.search(search_term)
+  #   where('lower(name) LIKE ?', "%#{search_term.downcase}%").where.not(team: nil)
+  # end
 
   def stats_for(year)
     season_id = Season.find_by(season: year)

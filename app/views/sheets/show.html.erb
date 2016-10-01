@@ -38,25 +38,25 @@
         <%= f.label :rec_td_pts %>
         <%= f.text_field :rec_td_pts %>
       </div>
-        <%= f.submit %>
+        <%= f.submit "Update Projections" %>
     <% end %>
   </div>
   <div id="search" class="tab-content">
-    <%= form_tag("/search", method: "get", html: {class: "search-form"}) do %>
+    <%= form_tag({controller: "sheets", action: "search"}, method: "get", class: "search-form") do %>
       <div class="form-field block">
-        <select class="" name="">
-          <option>Find player</option>
-          <option>Update status to available</option>
-          <option>Update status to targeted</option>
-          <option>Update status to drafted</option>
-          <option>Update status to unavailable</option>
+        <select class="search-setting">
+          <option value="find">Find player</option>
+          <option value="available">Update status to available</option>
+          <option value="targeted">Update status to targeted</option>
+          <option value="drafted">Update status to drafted</option>
+          <option value="unavailable">Update status to unavailable</option>
         </select>
       </div>
       <div class="form-field block">
-        <%= text_field_tag :name, nil, class: "search-field", placeholder: "Player Name" %>
+        <%= text_field_tag :q, nil, class: "search-field", placeholder: "Player Name" %>
       </div>
     <% end %>
-    <div id="search-results"></div>
+    <ol id="search-results"></ol>
   </div>
 </aside>
 
@@ -88,7 +88,7 @@
       <% elsif player.draft_status(@sheet) == 'drafted' %>
         <tr id="<%= player.id %>" class="ui-state-default drafted-player">
       <% elsif player.draft_status(@sheet) == 'unavailable' %>
-        <tr id="<%= player.id %>" class="ui-state-defaul unavailable-player">
+        <tr id="<%= player.id %>" class="ui-state-default unavailable-player">
       <% else player.draft_status(@sheet) == 'available' %>
         <tr id="<%= player.id %>" class="ui-state-default">
       <% end %>
