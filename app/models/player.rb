@@ -5,6 +5,10 @@ class Player < ActiveRecord::Base
   has_many :rankings
   has_many :sheets, through: :rankings
 
+  # def self.search(search_term)
+  #   where('lower(name) LIKE ?', "%#{search_term.downcase}%").where.not(team: nil)
+  # end
+
   def stats_for(year)
     season_id = Season.find_by(season: year)
     self.player_stats.where(season_id: season_id)[0]
@@ -26,7 +30,8 @@ class Player < ActiveRecord::Base
       "WR" => {correlation_str: 0.42, avg_proj: sheet.avg_wr_proj},
       "TE" => {correlation_str: 0.62, avg_proj: sheet.avg_te_proj},
     }
-    if self.player_stats.where(season: year)
+
+    if self.player_stats.where(season: year) && self.total_points(sheet, year) != 0
       (pos_data[self.position][:correlation_str] * (self.total_points(sheet, year) - pos_data[self.position][:avg_proj])) + pos_data[self.position][:avg_proj]
     else
       0

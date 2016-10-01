@@ -18,6 +18,10 @@ class Sheet < ActiveRecord::Base
     (total / players.length)
   end
 
+  def search(search_term)
+    self.ranked_players.where('lower(name) LIKE ?', "%#{search_term.downcase}%").where.not(team: nil)
+  end
+
   protected
   def init
     self.url_parameter ||= generate_url_parameter

@@ -172,11 +172,12 @@ header {
   }
 }
 
-#scoring-data {
+#settings {
   background: $highlight;
   bottom: 0;
   color: $white;
   opacity: .9;
+  overflow: scroll;
   padding: 10px 20px 20px;
   position: fixed;
   right: -400px;
@@ -186,15 +187,17 @@ header {
   -moz-transition: right 500ms;
   width: 400px;
   z-index: 2000;
-  .scoring {
-    display: relative;
-    margin-left: 20px;
+  .tab-content {
+    margin: 0 20px 0 40px;
+  }
+  #scoring {
     input[type="text"] {
-      position: absolute;
-      right: 40px;
-      width: 40px;
       border: 0;
       padding: 3px 3px 3px 6px;
+      position: absolute;
+      right: 160px;
+      text-align: center;
+      width: 40px;
     }
     input[type="submit"] {
       @include shadow(2px, 2px, 5px, lighten($dark, 10%));
@@ -204,16 +207,11 @@ header {
       font-size: 16px;
       transition: background 500ms;
       transition: box-shadow 500ms;
-      width: 120px;
       &:hover {
         @include shadow(0, 0, 0, transparent);
         transition: background 500ms;
         transition: box-shadow 500ms;
       }
-    }
-    h3 {
-      font-size: 36px;
-      margin-bottom: 14px;
     }
     label {
       line-height: 19px;
@@ -224,6 +222,27 @@ header {
       margin-bottom: 8px;
       &:last-of-type {
         margin-bottom: 20px;
+      }
+    }
+  }
+  #search {
+    input[type="text"] {
+      font-size: 18px;
+      padding: 5px 5px 5px 8px;
+      width: 100%;
+    }
+    select {
+      background: transparent image-url('down-arrow-white.png') right/20px 20px no-repeat;
+  	  -moz-appearance: none;
+  	  -webkit-appearance: none;
+      border: none;
+      color: inherit;
+      font-size: 20px;;
+      margin-bottom: 15px;
+      padding-right: 30px;
+      width: 100%;
+      &:focus {
+        outline: none;
       }
     }
   }
@@ -325,6 +344,7 @@ header {
   width: 100%;
   .create-sheet-button {
     @include logo($contrast, 32px);
+    border-radius: 2px;
     margin: 0 0 70px;
     padding: 20px 30px;
   }
@@ -337,6 +357,49 @@ header {
 #learn-more {
   background: $dark;
   height: 100vh;
+}
+.tabs {
+  margin: 30px 0 25px 20px;
+  padding-left: 20px;
+  position: relative;
+  &:after {
+    border-bottom: 1px solid $white;
+    bottom: 0;
+    content: " ";
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+  }
+  li {
+    border: 1px solid $white;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 22px;
+    float: left;
+    margin-right: 15px;
+    padding: 10px;
+    position: relative;
+    z-index: 0;
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+  li.selected {
+    border-bottom: 1px solid $highlight;
+    cursor: default;
+    z-index: 2;
+  }
+}
+
+#search-results {
+  margin-top: 20px;
+  a {
+    color: $white;
+  }
+  li {
+    padding: 5px 0;
+  }
 }
 
 .button {
