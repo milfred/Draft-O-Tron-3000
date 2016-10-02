@@ -6,6 +6,8 @@ class RankingsController < ApplicationController
     render nothing: true
   end
 
+  private
+
   def ranking_params
     params.permit(:player_rank, :status)
   end
