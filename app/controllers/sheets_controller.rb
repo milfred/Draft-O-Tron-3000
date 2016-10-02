@@ -9,7 +9,7 @@ class SheetsController < ApplicationController
   def show
     @sheet = Sheet.find(params[:id])
     if params[:id] == @sheet.url_parameter
-      @players = @sheet.rankings.map {|ranking| Player.find(ranking.player_id)}
+      @players = @sheet.ranked_players
       render "show"
     else
       render :file => "#{Rails.root}/public/404.html",  :status => 404
@@ -23,7 +23,7 @@ class SheetsController < ApplicationController
       redirect_to "/sheets/#{@sheet.url_parameter}"
     end
   end
-  
+
   def update
     sheet = Sheet.find(params[:id])
     sheet.update!(sheet_params)

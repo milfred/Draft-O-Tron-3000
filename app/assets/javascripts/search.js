@@ -4,6 +4,14 @@ $(function() {
     event.preventDefault();
   });
 
+  $(".search-setting").change(function() {
+    if ($(this).val() === "update") {
+      $("#status-container").removeClass("hide");
+    } else if ($(this).val() === "find") {
+      $("#status-container").addClass("hide");
+    }
+  });
+
   $(".search-field").on("keyup", function() {
     var searchField = $(this);
     var playerName = searchField.val();
