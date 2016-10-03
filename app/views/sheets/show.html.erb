@@ -3,6 +3,7 @@
   <ul class="tabs clearfix">
     <li id="scoring-tab" class="tab light-weight selected">Scoring</li>
     <li id="search-tab" class="tab light-weight">Search</li>
+    <li id="drafted-tab" class="tab light-weight">Drafted</li>
   </ul>
   <div id="scoring" class="tab-content">
     <%= form_for @sheet, html: {class: "update-pt-values"} do |f| %>
@@ -63,6 +64,9 @@
     <% end %>
     <ol id="search-results"></ol>
   </div>
+  <div id="drafted" class="tab-content">
+    <ol id="team"></ol>
+  </div>
 </aside>
 
 <table class="players">
@@ -97,14 +101,14 @@
       <% else player.draft_status(@sheet) == 'available' %>
         <tr id="<%= player.id %>" class="ui-state-default">
       <% end %>
-          <td id="<%= player.rankings.find_by(sheet_id: @sheet.id).id %>" class="rank"><%= index + 1 %></td>
+          <td id="rank-<%= player.rankings.find_by(sheet_id: @sheet.id).id %>" class="rank"><%= index + 1 %></td>
           <td class="normal-weight player-name" title="drag and drop to change player rank">
             <a class="player-stats" href="" title="view player stats"><%= player.name %></a>
-            <td><%= player.position + player.depth_order.to_s %></td>
-            <td><%= player.team %></td>
+            <td class="player-position"><%= player.position + player.depth_order.to_s %></td>
+            <td class="player-team"><%= player.team %></td>
           </td>
           <td class="text-center">
-            <select id="<%= player.rankings.find_by(sheet_id: @sheet.id).id %>" class="player-status light-weight">
+            <select class="player-status light-weight">
               <option <% if player.draft_status(@sheet) == 'available' %>selected<% end %> value="available">Available</option>
               <option <% if player.draft_status(@sheet) == 'targeted' %>selected<% end %> value="targeted">Targeted</option>
               <option <% if player.draft_status(@sheet) == 'drafted' %>selected<% end %> value="drafted">Drafted</option>
@@ -123,7 +127,7 @@
           <% end %>
           <td><%= player.total_points(@sheet, 2016).round(2) %></td>
           <td><%= player.adj_proj(@sheet, 2016).round(2) %></td>
-          <td><%= player.bye_week %></td>
+          <td class="player-bye"><%= player.bye_week %></td>
           <% if player.experience == 0 %>
             <td>Rookie</td>
           <% else %>

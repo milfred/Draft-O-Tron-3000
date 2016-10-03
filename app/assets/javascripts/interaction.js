@@ -1,82 +1,6 @@
 $(function() {
   $(".scroll-to-top").hide();
-  $(".drafted-players").hide();
-
-
-  // Update player status via select field
-  $(".player-status").change(function() {
-    var $selectStatus = $(this);
-    var statusValue = $selectStatus.val();
-    var playerName = $selectStatus.closest("tr").find(".player-name");
-    var rankingId = $selectStatus.attr("id");
-    var statusLookup = {
-      available: 0,
-      targeted: 1,
-      drafted: 2,
-      unavailable: 3
-    };
-    var data = "status=" + statusLookup[statusValue];
-
-    $selectStatus.closest("tr").removeClass("targeted-player drafted-player unavailable-player");
-
-    if ($selectStatus.val() === "targeted") {
-      $selectStatus.closest("tr").addClass("targeted-player");
-    } else if ($selectStatus.val() === "drafted") {
-      $selectStatus.closest("tr").addClass("drafted-player");
-      $(".drafted-players #drafted-players-list").append("<li>" + playerName.find("a").text() + "</li>");
-      $(".drafted-players").fadeIn(1000);
-      $(".drafted-players").delay(3000).fadeOut(1000);
-    } else if ($selectStatus.val() === "unavailable") {
-      $selectStatus.closest("tr").addClass("unavailable-player");
-    }
-
-    var request = $.ajax({
-      url: "/rankings/" + rankingId,
-      method: "PATCH",
-      data: data
-    });
-  });
-
-
-  // Update player status via search form
-  $("#search-results").on("click", "a", function() {
-    var playerLink = $(this);
-    var playerId = $(playerLink.attr('href')).selector;
-    var rankingId = $(playerId).find(".rank").attr("id");
-    var playerStatus = $(playerId).find(".player-status");
-    var statusSetting = $("#status-setting").val();
-    var statusLookup = {
-      available: 0,
-      targeted: 1,
-      drafted: 2,
-      unavailable: 3
-    };
-    var data = "status=" + statusLookup[statusSetting];
-
-    $("body", "html").animate({
-      scrollTop : $(playerLink.attr('href')).offset().top - 85
-    }, 300);
-    if (statusSetting == "available") {
-      playerStatus.val("available");
-      playerStatus.closest("tr").removeClass("targeted-player drafted-player unavailable-player");
-    } else if (statusSetting == "drafted") {
-      playerStatus.val("drafted");
-      playerStatus.closest("tr").addClass("drafted-player");
-    } else if (statusSetting == "targeted") {
-      playerStatus.val("targeted");
-      playerStatus.closest("tr").addClass("targeted-player");
-    } else if (statusSetting == "unavailable") {
-      playerStatus.val("unavailable");
-      playerStatus.closest("tr").addClass("unavailable-player");
-    }
-
-    var request = $.ajax({
-      url: "/rankings/" + rankingId,
-      method: "PATCH",
-      data: data
-    });
-  });
-
+  setDrafted();
 
   // Float table header
   var $table = $('table.players');
@@ -120,7 +44,7 @@ $(function() {
     $(".rank").each(function(index) {
       $(this).html(index + 1);
       var data = "player_rank=" + $(this).html();
-      var rankingId = $(this).attr("id");
+      var rankingId = $(this).attr("id").substring(5, $(this).attr("id").length);
 
       var request = $.ajax({
         url: "/rankings/" + rankingId,
