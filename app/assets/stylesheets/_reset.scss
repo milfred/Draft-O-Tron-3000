@@ -1,5 +1,8 @@
-* {
-	box-sizing: border-box;
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 html, body, div, span, object, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, strike, strong, ol, ul, li, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, footer, header, nav, section, {
@@ -11,6 +14,7 @@ html, body, div, span, object, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, co
 
 ol, ul {
 	padding-left: 0;
+	list-style: none;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, footer, header, menu, nav, section {
@@ -18,9 +22,6 @@ article, aside, footer, header, menu, nav, section {
 }
 body {
 	line-height: 1;
-}
-ol, ul {
-	list-style: none;
 }
 
 table {

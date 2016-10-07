@@ -2,71 +2,70 @@
 @import 'variables';
 @import 'functions';
 
-html, body {
+html, body, header, .players, .players tr {
   min-width: 100%;
 }
 
 body {
-  color: $dark;
   font-family: $roboto;
 }
 
-a {
+body, a {
   color: $dark;
+}
+
+a {
   text-decoration: none;
+}
+
+header, #settings, .scroll-to-top {
+  position: fixed;
+}
+
+.bookmark, .menu-button, .img, .tabs li, .button {
+  cursor: pointer;
 }
 
 header {
   background: $contrast;
-  color: $white;
   height: 54px;
   left: 0;
-  min-width: 100%;
-  position: fixed;
   padding: 10px;
   right: 0;
   top: 0;
   z-index: 1999;
-  .bookmark {
-    background: image-url("important.png") left 15%/17px 17px no-repeat;
-    cursor: pointer;
-    height: 20px;
-    margin: 0 0 10px 50px;
-    padding-left: 23px;
-    vertical-align: middle;
-  }
   a {
     h1 {
       @include logo($white, 32px);
     }
   }
-  .menu-button {
-    transition: opacity 1s;
-    img {
-      cursor: pointer;
-      height: 34px;
-      margin: 0 auto 3px auto;
-    }
-    span {
-      cursor: pointer;
-      margin: 0 3px 32px 0;
-      vertical-align: middle;
-    }
+}
+.menu-button {
+  @include compatibleTransition(opacity, 1s);
+  img {
+    height: 34px;
+    margin: 0 auto 3px auto;
+  }
+  span {
+    margin: 0 3px 32px 0;
+    vertical-align: middle;
   }
 }
+.bookmark {
+  background: image-url("important.png") left 15%/17px 17px no-repeat;
+  height: 20px;
+  margin: 0 0 10px 50px;
+  padding-left: 23px;
+  vertical-align: middle;
+}
+
 
 // table styles
 .players {
-  border-collapse: collapse;
   height: 100%;
   margin-top: 54px;
-  min-width: 100%;
   tr {
-    background: $lightGray;
-    min-width: 100%;
-    &:nth-child(2n+0) {
-      background: $lightSlate;
-    }
+  @include alternateBackgroundColor($lightGray, $lightSlate)
   }
   th, td {
     border: 1px solid $white;
@@ -79,15 +78,9 @@ header {
       opacity: 0.9;
     }
     th {
-      color: $white;
       font-weight: 400;
     }
   }
-
-  .ui-sortable-helper {
-    display: table;
-  }
-
   .player-name {
     background: transparent image-url('move-dark.png') 95% center/17px 17px no-repeat;
     position: relative;
@@ -95,7 +88,6 @@ header {
     .player-stats {
       background: transparent image-url('bar-chart.png') right center/15px 15px no-repeat;
       padding-right: 20px;
-      text-decoration: none;
     }
   }
   select {
@@ -108,23 +100,6 @@ header {
     padding-right: 20px;
     &:focus {
       outline: none;
-    }
-  }
-
-  .targeted-player {
-    background-color: $contrast !important;
-    color: $lightGray;
-    a {
-      color: $lightGray;
-    }
-    select {
-      background-image: image-url('down-arrow-gray.png');
-    }
-    .player-name {
-      background-image: image-url('move-white.png');
-      .player-stats {
-        background-image: image-url('bar-chart-white.png');
-      }
     }
   }
   .drafted-player {
@@ -143,48 +118,63 @@ header {
       }
     }
   }
-  .unavailable-player {
-    background-color: $slate !important;
+}
+.targeted-player {
+  background-color: $contrast !important;
+  color: $lightGray;
+  a {
+    color: $lightGray;
+  }
+  select {
+    background-image: image-url('down-arrow-gray.png');
+  }
+  .player-name {
+    background-image: image-url('move-white.png');
+    .player-stats {
+      background-image: image-url('bar-chart-white.png');
+    }
+  }
+}
+.unavailable-player {
+  background-color: $slate !important;
+  color: $lightGray;
+  text-decoration: line-through;
+  a {
     color: $lightGray;
     text-decoration: line-through;
-    a {
-      color: $lightGray;
-      text-decoration: line-through;
-    }
-    select {
-      background-image: image-url('down-arrow-gray.png');
-    }
-    .player-name {
-      background-image: image-url('move-white.png');
-      .player-stats {
-        background-image: image-url('bar-chart-white.png');
-      }
+  }
+  select {
+    background-image: image-url('down-arrow-gray.png');
+  }
+  .player-name {
+    background-image: image-url('move-white.png');
+    .player-stats {
+      background-image: image-url('bar-chart-white.png');
     }
   }
-  .stats-container {
-    color: $dark;
-    a {
-      text-decoration: underline;
-      &:hover {
-        text-decoration: none;
-      }
+}
+.stats-container {
+  color: $dark;
+  a {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
     }
   }
+}
+.ui-sortable-helper {
+  display: table;
 }
 
 #settings {
   background: $highlight;
   bottom: 0;
-  color: $white;
   opacity: .9;
   overflow: scroll;
   padding: 10px 20px 20px;
-  position: fixed;
   right: -400px;
   top: 0;
-  transition: right 500ms;
-  -webkit-transition: right 500ms;
-  -moz-transition: right 500ms;
+  @include compatibleTransition(right, 500ms);
   width: 400px;
   z-index: 2000;
   .tab-content {
@@ -206,12 +196,12 @@ header {
       border-radius: 0;
       font-size: 18px;
       padding: 3px 9px 4px;
-      transition: background 500ms;
-      transition: box-shadow 500ms;
+      @include compatibleTransition(background, 500ms);
+      @include compatibleTransition(box-shadow, 500ms);
       &:hover {
         @include shadow(0, 0, 0, transparent);
-        transition: background 500ms;
-        transition: box-shadow 500ms;
+        @include compatibleTransition(background, 500ms);
+        @include compatibleTransition(box-shadow, 500ms);
       }
     }
     label {
@@ -251,9 +241,6 @@ header {
     height: 34px;
     margin-bottom: 25px;
   }
-  .img {
-    cursor: pointer;
-  }
 }
 
 .scroll-to-top {
@@ -261,46 +248,18 @@ header {
   height: 50px;
   left: 50%;
   margin-left: -25px;
-  position: fixed;
   width: 50px;
   img {
     height: 50px;
     opacity: 0.4;
     filter: drop-shadow(1px 1px 3px darken($slate, 30%));
     -webkit-filter: drop-shadow(1px 1px 3px darken($slate, 30%));
-    transition: opacity 1s;
-    -webkit-transition: opacity 1s;
-    -moz-transition: opacity 1s;
+    @include compatibleTransition(opacity, 1s);
     width: 50px;
     &:hover {
       opacity: 0.9;
-      transition: opacity 1s;
-      -webkit-transition: opacity 1s;
-      -moz-transition: opacity 1s;
+      @include compatibleTransition(opacity, 1s);
     }
-  }
-}
-
-.drafted-players {
-  background: $white;
-  line-height: 20px;
-  min-height: 400px;
-  opacity: .9;
-  padding: 20px;
-  position: fixed;
-  right: 100px;
-  top: 200px;
-  width: 300px;
-  z-index: 1999;
-  ul {
-    padding-left: 0;
-    li {
-      list-style-type: none;
-    }
-  }
-  h3 {
-    font-size: 22px;
-    margin-bottom: 10px;
   }
 }
 
@@ -332,7 +291,6 @@ header {
   }
   .projections {
     background: $lightContrast;
-    color: $white;
   }
 }
 
@@ -350,7 +308,6 @@ header {
     padding: 20px 30px;
   }
   .tagline {
-    color: $white;
     font-size: 24px;
     margin: 0 0 235px;
   }
@@ -375,7 +332,6 @@ header {
   li {
     border: 1px solid $white;
     border-radius: 2px;
-    cursor: pointer;
     font-size: 22px;
     float: left;
     margin-right: 12px;
@@ -395,16 +351,15 @@ header {
 
 #search-results {
   margin-top: 20px;
-  a {
-    color: $white;
-  }
   li {
     padding: 5px 0;
   }
 }
 
 #team {
-  li {
+  width: 100%;
+  td, th {
+    text-align: left;
     padding: 5px 0;
   }
 }
@@ -414,11 +369,10 @@ header {
   border: none;
   border-radius: 0;
   color: $contrast;
-  cursor: pointer;
-  transition: box-shadow 500ms;
+  @include compatibleTransition(box-shadow, 500ms);
   &:hover {
     @include shadow(0, 0, 0, transparent);
-    transition: box-shadow 500ms;
+    @include compatibleTransition(box-shadow, 500ms);
   }
 }
 .block {

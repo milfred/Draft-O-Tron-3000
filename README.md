@@ -1,2 +1,2 @@
-# Draft-O-Tron-3000
+# DRAffTR
 An interactive fantasy football cheat sheet.

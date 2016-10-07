@@ -31,11 +31,11 @@ $(function() {
 
         if(response.length > 0) {
           $.each(response, function(index, player) {
-            $("<li><a href='#" + player.id + "'>" + player.name + " " + player.position + " " + player.team + "</a></li>").hide().appendTo("#search-results").delay(fadeDelay).fadeIn(100);
+            $("<li><a class='white' href='#" + player.id + "'>" + player.name + " " + player.position + " " + player.team + "</a></li>").hide().appendTo("#search-results").delay(fadeDelay).fadeIn(100);
             fadeDelay += 50;
           });
         } else {
-          $("<li>No results found</li>").hide().appendTo("#search-results").fadeIn(100);
+          $("<li class='white'>No results found</li>").hide().appendTo("#search-results").fadeIn(100);
         }
       });
     } else {

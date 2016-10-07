@@ -6,7 +6,7 @@
   </div>
   <table class="stats">
   	<thead>
-      <tr>
+      <tr class="white">
         <th>Season</th>
         <th>Played</th>
         <th>Started</th>
@@ -28,7 +28,7 @@
     <tbody class="light-weight">
       <% @stats.each do |season| %>
         <% if season.season.season == 2016 %>
-          <tr class="projections">
+          <tr class="projections white">
             <td>Projections</td>
         <% else %>
           <tr>

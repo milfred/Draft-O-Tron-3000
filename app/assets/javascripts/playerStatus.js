@@ -15,6 +15,9 @@ $(function() {
 
     updateStatusStyes($playerStatus, $playerStatus.val());
     updateStatus(rankingId, data);
+    if ($playerStatus.val() === "drafted") {
+      setDrafted();
+    }
   });
 
 
@@ -39,12 +42,15 @@ $(function() {
     }, 300);
     updateStatusStyes($playerStatus, statusSetting);
     updateStatus(rankingId, data);
+    if (statusSetting === "drafted") {
+      setDrafted();
+    }
   });
 });
 
 
 function setDrafted() {
-  $("#team").html("");
+  $("#team").find("tbody").html("");
   $(".player-status").each(function(index, value) {
     var status = $(this);
     var playerName = status.closest("tr").find(".player-name").text();
@@ -53,7 +59,7 @@ function setDrafted() {
     var playerBye = status.closest("tr").find(".player-bye").text();
 
     if (status.val() === "drafted") {
-      $("#team").append("<li>" + playerName + " " + playerPosition + " " + playerTeam + " - bye week: " + playerBye + "</li>");
+      $("#team").find("tbody").append("<tr><td>" + playerName + "</td><td>" + playerPosition + "</td><td>" + playerTeam + "</td><td>" + playerBye + "</td></tr>");
     }
   });
 }
