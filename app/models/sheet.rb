@@ -11,15 +11,12 @@ class Sheet < ActiveRecord::Base
 
   def avg_proj(player_position, year)
     players = self.ranked_players.where(position: player_position).where(depth_order: 1)
-    total = 0
-    players.each do |player|
-      total = total + player.total_points(self, year)
-    end
-    (total / players.length)
+    totals = players.map {|player| player.total_points(self, year)}
+    totals.reduce(:+) / totals.length
   end
 
   def search(search_term)
-    self.ranked_players.where('lower(name) LIKE ?', "%#{search_term.downcase}%").where.not(team: nil)
+    self.ranked_players.where('lower(name) LIKE ?', "%#{search_term.downcase}%")
   end
 
   protected

@@ -1,4 +1,4 @@
-<aside id="settings">
+<aside id="settings" class="white">
   <%= image_tag("right-arrow-white.png", class: "close-arrow block", alt: "Right Arrow Icon") %>
   <ul class="tabs clearfix">
     <li id="scoring-tab" class="tab light-weight selected">Scoring</li>
@@ -65,13 +65,24 @@
     <ol id="search-results"></ol>
   </div>
   <div id="drafted" class="tab-content">
-    <ol id="team"></ol>
+    <table id="team">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Pos</th>
+          <th>Team</th>
+          <th>Bye</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
   </div>
 </aside>
 
 <table class="players">
 	<thead>
-		<tr>
+		<tr class="white">
 			<th>Rank</th>
       <th>Name</th>
       <th>Pos</th>
@@ -93,11 +104,11 @@
       <% if player.team %>
 
       <% if player.draft_status(@sheet) == 'targeted' %>
-        <tr id="<%= player.id %>" class="ui-state-default targeted-player">
+        <tr id="<%= player.id %>" class="ui-state-default targeted-player white">
       <% elsif player.draft_status(@sheet) == 'drafted' %>
-        <tr id="<%= player.id %>" class="ui-state-default drafted-player">
+        <tr id="<%= player.id %>" class="ui-state-default drafted-player white">
       <% elsif player.draft_status(@sheet) == 'unavailable' %>
-        <tr id="<%= player.id %>" class="ui-state-default unavailable-player">
+        <tr id="<%= player.id %>" class="ui-state-default unavailable-player white">
       <% else player.draft_status(@sheet) == 'available' %>
         <tr id="<%= player.id %>" class="ui-state-default">
       <% end %>

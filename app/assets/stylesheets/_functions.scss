@@ -14,3 +14,16 @@
     padding-right: 0.1em;
   }
 }
+
+@mixin compatibleTransition($property, $duration) {
+  transition: $property $duration;
+  -webkit-transition: $property $duration;
+  -moz-transition: $property $duration;
+}
+
+@mixin alternateBackgroundColor($color1, $color2) {
+  background: $color1;
+  &:nth-child(2n+0) {
+    background: $color2;
+  }
+}

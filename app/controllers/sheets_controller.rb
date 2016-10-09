@@ -27,7 +27,6 @@ class SheetsController < ApplicationController
   def update
     sheet = Sheet.find(params[:id])
     sheet.update!(sheet_params)
-    p params
 
     render nothing: true
   end
