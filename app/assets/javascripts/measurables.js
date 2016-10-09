@@ -2,7 +2,6 @@ $(function() {
 
   $("#scoring-data").submit(function(event) {
     event.preventDefault();
-    console.log($(this).serialize());
   });
 
   $(".player-stats").on("click", function(event) {
@@ -11,8 +10,6 @@ $(function() {
     $(".stats-container").remove();
     var $player = $(this);
     var playerId = $(this).closest("tr").attr("id");
-
-    console.log(playerId);
 
     var request = $.ajax({
       url: "/measurables/show",

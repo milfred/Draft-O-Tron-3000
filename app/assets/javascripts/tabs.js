@@ -9,8 +9,6 @@ $(function() {
     var contentId = tabId.substring(0, tabId.length - 4);
     var selectedTabId = "#" + $("#settings .selected").attr("id");
 
-    console.log(contentId);
-
     if(tabId != selectedTabId) {
       $(".tab-content").hide();
       $(".tab").removeClass("selected");
