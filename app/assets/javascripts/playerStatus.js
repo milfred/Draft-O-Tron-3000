@@ -15,9 +15,7 @@ $(function() {
 
     updateStatusStyes($playerStatus, $playerStatus.val());
     updateStatus(rankingId, data);
-    if ($playerStatus.val() === "drafted") {
-      setDrafted();
-    }
+    setDrafted();
   });
 
 
@@ -80,6 +78,7 @@ function updateStatusStyes(statusElement, newStatus) {
   clearStatusStyles(statusElement);
   if (newStatus !== "available") {
     statusElement.closest("tr").addClass(newStatus + "-player");
+    statusElement.closest("tr").removeClass("white");
   }
   if (statusElement.val() !== newStatus) {
     statusElement.val(newStatus);

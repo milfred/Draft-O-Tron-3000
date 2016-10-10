@@ -119,6 +119,9 @@ header {
     }
   }
 }
+.targeted-player, .unavailable-player {
+  color: $white;
+}
 .targeted-player {
   background-color: $contrast !important;
   color: $lightGray;
