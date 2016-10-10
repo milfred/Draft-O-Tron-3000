@@ -31,8 +31,10 @@ class Player < ActiveRecord::Base
       "TE" => {correlation_str: 0.62, avg_proj: sheet.avg_te_proj},
     }
 
-    if self.player_stats.where(season: year) && self.total_points(sheet, year) != 0
-      (pos_data[self.position][:correlation_str] * (self.total_points(sheet, year) - pos_data[self.position][:avg_proj])) + pos_data[self.position][:avg_proj]
+    points = self.total_points(sheet, year)
+
+    if self.player_stats.where(season: year) && points != 0
+      (pos_data[self.position][:correlation_str] * (points - pos_data[self.position][:avg_proj])) + pos_data[self.position][:avg_proj]
     else
       0
     end
