@@ -81,8 +81,8 @@ function addResults(addArray, response) {
     $(".no-results").remove();
     $.each(response, function(index, player) {
       if (addArray.includes(player.id)) {
-        addArray.splice( $.inArray($(this), addArray), 1 );
         $("<li><a class='white' href='#" + player.id + "'>" + player.name + " " + player.position + " " + player.team + "</a></li>").hide().appendTo("#search-results").delay(fadeDelay).fadeIn(100);
+        addArray.shift();
         fadeDelay += 50;
       }
     });
