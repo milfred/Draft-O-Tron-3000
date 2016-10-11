@@ -24,43 +24,41 @@ $(function() {
       var linkId = $(link).attr("href");
       return parseInt(linkId.substring(1, linkId.length));
     });
-
-    if(keyword.length >= 3) {
-      var request = $.ajax({
-        url: url,
-        method: "GET",
-        data: data
-      });
-
-      request.done(function(response) {
-
-        var newResults = $.map(response, function(index) {
-          return index.id;
+    delay(function(){
+      if(keyword.length >= 3) {
+        var request = $.ajax({
+          url: url,
+          method: "GET",
+          data: data
         });
 
-        var resultsToRemove = $.makeArray(currentResults).filter(function(val) {
-          return $.makeArray(newResults).indexOf(val) == -1;
-        });
-        var resultsToAdd = $.makeArray(newResults).filter(function(val) {
-          return $.makeArray(currentResults).indexOf(val) == -1;
-        });
+        request.done(function(response) {
 
-        if(response.length > 0) {
-          var fadeDelay = 0;
-          removeResults(resultsToRemove);
-          addResults(resultsToAdd, response);
+          var newResults = $.map(response, function(index) {
+            return index.id;
+          });
 
-          console.log(addArray);
-        } else {
-          $("#search-results").html("");
-          $("<li class='no-results white'>No results found</li>").hide().appendTo("#search-results").fadeIn(200);
-        }
-      });
-    } else {
-      $("#search-results").html("");
-    }
+          var resultsToRemove = $.makeArray(currentResults).filter(function(val) {
+            return $.makeArray(newResults).indexOf(val) == -1;
+          });
+          var resultsToAdd = $.makeArray(newResults).filter(function(val) {
+            return $.makeArray(currentResults).indexOf(val) == -1;
+          });
+
+          if(response.length > 0) {
+            var fadeDelay = 0;
+            removeResults(resultsToRemove);
+            addResults(resultsToAdd, response);
+          } else {
+            $("#search-results").html("");
+            $("<li class='no-results white'>No results found</li>").hide().appendTo("#search-results").fadeIn(200);
+          }
+        });
+      } else {
+        $("#search-results").html("");
+      }
+    }, 200 );
   });
-
 });
 
 
@@ -82,9 +80,16 @@ function addResults(addArray, response) {
     $.each(response, function(index, player) {
       if (addArray.includes(player.id)) {
         $("<li><a class='white' href='#" + player.id + "'>" + player.name + " " + player.position + " " + player.team + "</a></li>").hide().appendTo("#search-results").delay(fadeDelay).fadeIn(100);
-        addArray.shift();
         fadeDelay += 50;
       }
     });
   }
 }
+
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
