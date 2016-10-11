@@ -68,7 +68,7 @@
     <table id="team">
       <thead>
         <tr>
-          <th>Name</th>
+          <th style="width: 188px">Name</th>
           <th>Pos</th>
           <th>Team</th>
           <th>Bye</th>
@@ -104,11 +104,11 @@
       <% if player.team %>
 
       <% if player.draft_status(@sheet) == 'targeted' %>
-        <tr id="<%= player.id %>" class="ui-state-default targeted-player white">
+        <tr id="<%= player.id %>" class="ui-state-default targeted-player">
       <% elsif player.draft_status(@sheet) == 'drafted' %>
-        <tr id="<%= player.id %>" class="ui-state-default drafted-player white">
+        <tr id="<%= player.id %>" class="ui-state-default drafted-player">
       <% elsif player.draft_status(@sheet) == 'unavailable' %>
-        <tr id="<%= player.id %>" class="ui-state-default unavailable-player white">
+        <tr id="<%= player.id %>" class="ui-state-default unavailable-player">
       <% else player.draft_status(@sheet) == 'available' %>
         <tr id="<%= player.id %>" class="ui-state-default">
       <% end %>
