@@ -38,10 +38,13 @@ $(function() {
     $("body", "html").animate({
       scrollTop : $(playerLink.attr('href')).offset().top - 85
     }, 300);
-    updateStatusStyes($playerStatus, statusSetting);
-    updateStatus(rankingId, data);
-    if (statusSetting === "drafted") {
-      setDrafted();
+    if ($(".search-setting").val() === "update") {
+      console.log($(".search-setting").val());
+      updateStatusStyes($playerStatus, statusSetting);
+      updateStatus(rankingId, data);
+      if (statusSetting === "drafted") {
+        setDrafted();
+      }
     }
   });
 });
