@@ -15,7 +15,7 @@ $(function() {
   });
 
 
-  $(".search-field").on("keypress change input", function() {
+  $(".search-field").on("input", function() {
     var searchField = $(this);
     var keyword = searchField.val();
     var url = $(".search-form").attr("action");
@@ -59,7 +59,6 @@ $(function() {
   });
 });
 
-
 function removeResults(removeArray) {
   var fadeDelay = 0;
   if (removeArray.length > 0) {
@@ -83,11 +82,3 @@ function addResults(addArray, response) {
     });
   }
 }
-
-var delay = (function(){
-  var timer = 0;
-  return function(callback, ms){
-    clearTimeout (timer);
-    timer = setTimeout(callback, ms);
-  };
-})();
