@@ -28,7 +28,8 @@ $(function() {
       var request = $.ajax({
         url: url,
         method: "GET",
-        data: data
+        data: data,
+        async: false
       });
 
       request.done(function(response) {
