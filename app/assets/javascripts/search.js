@@ -67,7 +67,7 @@ function removeResults(removeArray) {
       $("#search-results a[href='#"  + playerId + "']").closest("li").delay(fadeDelay).fadeOut(100, function() {
         $(this).remove();
       });
-      fadeDelay += 50;
+      fadeDelay += 25;
     });
   }
 }
@@ -78,7 +78,7 @@ function addResults(addArray, response) {
     $.each(response, function(index, player) {
       if (addArray.includes(player.id)) {
         $("<li><a class='white' href='#" + player.id + "'>" + player.name + " " + player.position + " " + player.team + "</a></li>").hide().appendTo("#search-results").delay(fadeDelay).fadeIn(100);
-        fadeDelay += 50;
+        fadeDelay += 25;
       }
     });
   }
