@@ -64,10 +64,10 @@ function removeResults(removeArray) {
   var fadeDelay = 0;
   if (removeArray.length > 0) {
     $.each(removeArray, function(index, playerId) {
-      $("#search-results a[href='#"  + playerId + "']").closest("li").delay(fadeDelay).fadeOut(100, function() {
+      $("#search-results a[href='#"  + playerId + "']").closest("li").delay(fadeDelay).fadeOut(200, function() {
         $(this).remove();
       });
-      fadeDelay += 50;
+      fadeDelay += 25;
     });
   }
 }
@@ -77,8 +77,8 @@ function addResults(addArray, response) {
     $(".no-results").remove();
     $.each(response, function(index, player) {
       if (addArray.includes(player.id)) {
-        $("<li><a class='white' href='#" + player.id + "'>" + player.name + " " + player.position + " " + player.team + "</a></li>").hide().appendTo("#search-results").delay(fadeDelay).fadeIn(100);
-        fadeDelay += 50;
+        $("<li><a class='white' href='#" + player.id + "'>" + player.name + " " + player.position + " " + player.team + "</a></li>").hide().appendTo("#search-results").delay(fadeDelay).fadeIn(200);
+        fadeDelay += 25;
       }
     });
   }
